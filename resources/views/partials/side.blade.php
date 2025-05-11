@@ -23,14 +23,14 @@
         </a>
 
         {{-- Data diri --}}
-        <a href="{{ route('datadiri') }}" class="sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('datadiri'))
+        <a href="{{ route('biodata') }}" class="sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('biodata'))
             bg-blue-50
             text-blue-700
             @else
             hover:bg-lightGray
         @endif">
             <i class="fa-solid fa-address-card"></i>
-            <h1 class="text-xs sideBarMenuLabel">Data Diri</h1>
+            <h1 class="text-xs sideBarMenuLabel">Biodata</h1>
         </a>
 
         {{-- Berkas --}}

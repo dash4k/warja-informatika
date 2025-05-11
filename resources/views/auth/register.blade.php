@@ -33,13 +33,6 @@
 
                     {{-- Client side validation --}}
                     <p id="idErrorMessage" class="text-red-500 mt-1 text-xs"></p>
-
-                    {{-- Server side validation --}}
-                    @error('id_user')
-                    <div class="text-red-500 mt-1 text-xs">
-                        {{ $message }}
-                    </div>
-                    @enderror
                 </div>
 
                 {{-- Email Input --}}
@@ -49,13 +42,6 @@
 
                     {{-- Client side validation --}}
                     <p id="emailErrorMessage" class="text-red-500 mt-1 text-xs"></p>
-
-                    {{-- Server side validation --}}
-                    @error('email')
-                    <div class="text-red-500 mt-1 text-xs">
-                        {{ $message }}
-                        </div>
-                    @enderror
                 </div>
 
                 {{-- Password Input --}}
@@ -65,13 +51,6 @@
 
                     {{-- Client side validation --}}
                     <p id="passwordErrorMessage" class="text-red-500 mt-1 text-xs"></p>
-
-                    {{-- Server side validation --}}
-                    @error('password')
-                        <div class="text-red-500 mt-1 text-xs">
-                            {{ $message }}
-                        </div>
-                    @enderror
                 </div>
 
                 {{-- Password Confirtmation Input --}}
@@ -81,13 +60,6 @@
 
                     {{-- Client side validation --}}
                     <p id="passwordConfirmationErrorMessage" class="text-red-500 mt-1 text-xs"></p>
-
-                    {{-- Server side validation --}}
-                    @error('password_confirmation')
-                        <div class="text-red-500 mt-1 text-xs">
-                            {{ $message }}
-                        </div>
-                    @enderror
                 </div>
 
                 {{-- Submit button --}}
@@ -105,5 +77,21 @@
 
     @push('scripts')
         @vite('resources/js/register.js')
+        @vite('resources/js/errorAlert.js')
+    @endpush
+    @push('scripts')
+        @if ($errors->any() || session('error'))
+            <script>
+                window.laravelErrors = [];
+
+                @if ($errors->any())
+                    window.laravelErrors = @json($errors->all());
+                @endif
+
+                @if (session('error'))
+                    window.laravelErrors.push(@json(session('error')));
+                @endif
+            </script>
+        @endif
     @endpush
 </x-auth-layout>

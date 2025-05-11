@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('mahasiswas', function (Blueprint $table) {
             $table->id('nim');
             $table->string('nama');
+            $table->enum('kelas', ['a', 'b', 'c', 'd', 'e', 'f']);
+            $table->string('profile_picture');
             
             $table->foreign('nim')->references('id_user')->on('users')->onDelete('cascade');
         });

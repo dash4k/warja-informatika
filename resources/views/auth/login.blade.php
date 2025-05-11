@@ -6,13 +6,6 @@
         <div class="w-full md:w-1/2 min-h-screen flex flex-col justify-center">
             <form action="{{ route('login') }}" method="post" id="loginForm" class="flex flex-col px-20 gap-5">
                 @csrf
-                
-                {{-- Server side validation + display error message --}}
-                @if (session('error'))
-                    <div class="text-red-500 bg-red-50 border border-red-300 p-2 rounded-md mb-2 text-sm">
-                        {{ session('error') }}
-                    </div>
-                @endif
 
                 {{-- Form header --}}
                 <h1 class="font-poppins font-medium tracking-wide text-3xl">Login</h1>
@@ -25,13 +18,6 @@
 
                     {{-- Client side validation --}}
                     <p id="emailErrorMessage" class="text-red-500 mt-1 text-xs"></p>
-
-                    {{-- Server side validation --}}
-                    @error('email')
-                        <div class="text-red-500 mt-1 text-xs">
-                            {{ $message }}
-                        </div>
-                    @enderror
                 </div>
 
                 {{-- Password Input --}}
@@ -41,13 +27,6 @@
                     
                     {{-- Client side validation --}}
                     <p id="passwordErrorMessage" class="text-red-500 mt-1 text-xs"></p>
-
-                    {{-- Server side validation --}}
-                    @error('password')
-                        <div class="text-red-500 mt-1 text-xs">
-                            {{ $message }}
-                        </div>
-                    @enderror
                 </div>
 
                 {{-- Form submit button --}}
@@ -77,6 +56,22 @@
     </div>
 
     @push('scripts')
-    @vite('resources/js/login.js')
+        @vite('resources/js/login.js')
+        @vite('resources/js/errorAlert.js')
+    @endpush
+    @push('scripts')
+        @if ($errors->any() || session('error'))
+            <script>
+                window.laravelErrors = [];
+
+                @if ($errors->any())
+                    window.laravelErrors = @json($errors->all());
+                @endif
+
+                @if (session('error'))
+                    window.laravelErrors.push(@json(session('error')));
+                @endif
+            </script>
+        @endif
     @endpush
 </x-auth-layout>

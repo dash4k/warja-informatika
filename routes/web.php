@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Main\BerkasController;
 use App\Http\Controllers\Main\DataDiriController;
 use App\Http\Controllers\Main\PenjaluranController;
+use App\Http\Controllers\Model\MahasiswaController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -23,7 +24,10 @@ Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 
-Route::get('/datadiri', [DataDiriController::class, 'index'])->name('datadiri')->middleware('auth');
+// Route::get('/datadiri', [DataDiriController::class, 'index'])->name('datadiri')->middleware('auth');
+Route::get('/biodata', [MahasiswaController::class, 'index'])->name('biodata')->middleware('auth');
+Route::post('/biodata', [MahasiswaController::class, 'store'])->middleware('auth');
+Route::put('/biodata', [MahasiswaController::class, 'update'])->middleware('auth');
 
 Route::get('/berkas', [BerkasController::class, 'index'])->name('berkas')->middleware('auth');
 
