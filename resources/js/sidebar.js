@@ -1,7 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
     const hamburgerButton = document.getElementById('humburgerToggle');
+    const resumeButton = document.getElementById('resumeButton');
+    const resumeContainer = document.getElementById('resumeContainer');
     const sidebarEl = document.getElementById('sidebar');
     let toggled = false;
+
+    resumeButton.addEventListener('click', () => {
+        const isCollapsed = sidebarEl.classList.contains('lg:w-1/12');
+        if (!isCollapsed) {
+            resumeContainer.classList.toggle('hidden');
+        }
+    })
 
     hamburgerButton.addEventListener('click', () => {
         const isMobile = window.innerWidth < 1024;
@@ -11,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             sidebarEl.classList.toggle('hidden');
         } else {
             toggleSidebar(sidebarEl);
+            resumeContainer.classList.add('hidden');
         }
         if (!isMobile) {
             if (toggled) {
@@ -29,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     function handleMouseLeave() {
         hoverSidebar(sidebarEl);
+        resumeContainer.classList.add('hidden');
     }
 
     function hoverSidebar(el) {

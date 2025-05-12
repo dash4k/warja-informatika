@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Nilai extends Model
+{
+    use HasFactory;
+
+    protected $primaryKey = 'id_nilai';
+
+    public $incrementing = false;
+    
+    protected $keyType = 'int';
+
+    protected $fillable = [
+        'id_nilai',
+        'etika_profesi',
+        'kewarganegaraan',
+        'bahasa_indonesia',
+        'matematika_diskrit_1',
+        'statistika_dasar',
+        'algoritma_pemrograman',
+        'sistem_digital',
+        'matematika_informatika',
+        'pancasila',
+        'pendidikan_agama',
+        'matematika_diskrit_2',
+        'pengantar_probabilitas',
+        'kewirausahaan',
+        'tata_tulis_karya_ilmiah',
+        'struktur_data',
+        'sistem_operasi',
+        'organisasi_arsitektur_komputer',
+        'interaksi_manusia_komputer',
+        'basis_data',
+        'desain_analisis_algoritma',
+        'rekayasa_perangkat_lunak',
+        'pemrograman_berbasis_obyek',
+        'komunikasi_data_jaringan_komputer',
+        'teori_bahasa_otomata',
+    ];
+}

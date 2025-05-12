@@ -12,11 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('portofolios', function (Blueprint $table) {
-            $table->id('id_porto');
+            $table->id('id_portofolio');
             $table->float('bobot');
-            $table->unsignedBigInteger('id_nilai_total');
 
-            $table->foreign('id_nilai_total')->references('id_nilai_total')->on('nilai_totals')->onDelete('cascade');
+            $table->foreign('id_portofolio')->references('nim')->on('mahasiswas')->onDelete('cascade');
         });
     }
 

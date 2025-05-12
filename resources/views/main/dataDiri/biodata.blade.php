@@ -1,4 +1,6 @@
-<x-dashboard-layout title="Data Diri — Warja">
+{{-- TO DO: Benerin width input foto, line 30 --}}
+
+<x-dashboard-layout title="Biodata — Warja">
     {{-- Main Container --}}
     <form id="biodataForm" method="post" action="{{ route('biodata') }}" class="lg:absolute lg:right-[2.7%] mt-25 lg:ml-[20%] lg:mt-20 lg:w-7/9 h-screen w-5/6 max-w-[86%] mx-auto rounded-sm mainMainContentDashboard transition-all duration-300 flex flex-col gap-5" enctype="multipart/form-data">
         @csrf

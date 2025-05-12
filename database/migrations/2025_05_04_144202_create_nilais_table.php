@@ -13,33 +13,33 @@ return new class extends Migration
     {
         Schema::create('nilais', function (Blueprint $table) {
             $table->id('id_nilai');
-            $table->float('agama');
-            $table->float('sisdig');
-            $table->float('statdas');
-            $table->float('matinfor');
-            $table->float('strukdat');
-            $table->float('kdjk');
-            $table->float('tbo');
-            $table->float('daa');
-            $table->float('rpl');
-            $table->float('sisop');
-            $table->float('oak');
-            $table->float('pbo');
-            $table->float('kwu');
-            $table->float('matdis_2');
-            $table->float('etprof');
-            $table->float('ttki');
-            $table->float('basindo');
-            $table->float('matdis_1');
-            $table->float('kwn');
-            $table->float('imk');
-            $table->float('basdat');
-            $table->float('probabil');
-            $table->float('alpro');
+            $table->float('etika_profesi');
+            $table->float('kewarganegaraan');
+            $table->float('bahasa_indonesia');
+            $table->float('matematika_diskrit_1');
+            $table->float('statistika_dasar');
+            $table->float('algoritma_pemrograman');
+            $table->float('sistem_digital');
+            $table->float('matematika_informatika');
             $table->float('pancasila');
-            $table->unsignedBigInteger('id_nilai_total');
+            $table->float('pendidikan_agama');
+            $table->float('matematika_diskrit_2');
+            $table->float('pengantar_probabilitas');
+            $table->float('kewirausahaan');
+            $table->float('tata_tulis_karya_ilmiah');
+            $table->float('struktur_data');
+            $table->float('sistem_operasi');
+            $table->float('organisasi_arsitektur_komputer');
+            $table->float('interaksi_manusia_komputer');
+            $table->float('basis_data');
+            $table->float('desain_analisis_algoritma');
+            $table->float('rekayasa_perangkat_lunak');
+            $table->float('pemrograman_berbasis_obyek');
+            $table->float('komunikasi_data_jaringan_komputer');
+            $table->float('teori_bahasa_otomata');
+            $table->timestamps();
 
-            $table->foreign('id_nilai_total')->references('id_nilai_total')->on('nilai_totals')->onDelete('cascade');
+            $table->foreign('id_nilai')->references('nim')->on('mahasiswas')->onDelete('cascade');
         });
     }
 

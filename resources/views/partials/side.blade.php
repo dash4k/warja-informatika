@@ -21,8 +21,8 @@
             <i class="fa-solid fa-house"></i>
             <h1 class="text-xs sideBarMenuLabel">Dashboard</h1>
         </a>
-
-        {{-- Data diri --}}
+        
+        {{-- Biodata --}}
         <a href="{{ route('biodata') }}" class="sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('biodata'))
             bg-blue-50
             text-blue-700
@@ -33,16 +33,41 @@
             <h1 class="text-xs sideBarMenuLabel">Biodata</h1>
         </a>
 
-        {{-- Berkas --}}
-        <a href="{{ route('berkas') }}" class="sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('berkas'))
-            bg-blue-50
-            text-blue-700
-            @else
-            hover:bg-lightGray
-        @endif">
-            <i class="fa-solid fa-folder-open"></i>
-            <h1 class="text-xs sideBarMenuLabel">Berkas</h1>
-        </a>
+        <button id="resumeButton" class="sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('berkas') || request()->routeIs('nilai'))
+                bg-blue-50
+                text-blue-700
+                @else
+                hover:bg-lightGray
+            @endif">
+            <i class="fa-solid fa-laptop-code"></i>
+            <h1 class="text-xs sideBarMenuLabel">Resume</h1>
+        </button>
+        <div id="resumeContainer" class="w-4/5 flex flex-col items-end justify-center gap-2 transition-all duration-300">
+                        
+            {{-- Nilai --}}
+            <a href="{{ route('nilai', 1) }}" class="sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('nilai'))
+                bg-blue-50
+                text-blue-700
+                @else
+                hover:bg-lightGray
+            @endif">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <h1 class="text-xs sideBarMenuLabel">Nilai</h1>
+            </a>
+
+            {{-- Berkas --}}
+            <a href="{{ route('berkas') }}" class="sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('berkas'))
+                bg-blue-50
+                text-blue-700
+                @else
+                hover:bg-lightGray
+            @endif">
+                <i class="fa-solid fa-award"></i>
+                <h1 class="text-xs sideBarMenuLabel">Portofolio</h1>
+            </a>
+        </div>
+
+
 
         {{-- Penjaluran --}}
         <a href="{{ route('penjaluran') }}" class="sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('penjaluran'))
