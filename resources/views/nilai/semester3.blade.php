@@ -64,14 +64,14 @@
             {{-- Buttons container --}}
             <div class="px-4 rounded-b-2xl bg-white w-full h-auto border-x-2 border-b-2 border-lightGray flex flex-col lg:flex-row  items-center justify-center lg:justify-end gap-1 lg:gap-2">
                 <div class="w-full lg:w-1/4 lg:h-30 flex flex-col lg:flex-row gap-2 pt-4 lg:justify-center lg:items-center lg:pt-0">
-                    <button class="w-full lg:h-1/2 bg-red-100">Revert Changes</button>
+                    <button class="w-full lg:h-1/2 bg-red-100" type="reset">Revert Changes</button>
                     <button class="w-full lg:h-1/2 bg-blue-100" type="submit">Next Form</button>
                 </div>
             </div>
         </form>
     </section>
     @push('scripts')
-        @vite('resources/js/errorAlert.js')
+        @vite('resources/js/Alert.js')
     @endpush
     @push('scripts')
         @if ($errors->any() || session('error'))
@@ -85,6 +85,11 @@
                 @if (session('error'))
                     window.laravelErrors.push(@json(session('error')));
                 @endif
+            </script>
+        @endif
+        @if (session('success'))
+            <script>
+                window.laravelSuccess = @json(session('success'));
             </script>
         @endif
     @endpush

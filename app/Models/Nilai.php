@@ -41,5 +41,6 @@ class Nilai extends Model
         'pemrograman_berbasis_obyek',
         'komunikasi_data_jaringan_komputer',
         'teori_bahasa_otomata',
+        'transkrip_sementara',
     ];
 }

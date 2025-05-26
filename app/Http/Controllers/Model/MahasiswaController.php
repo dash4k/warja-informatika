@@ -16,7 +16,7 @@ class MahasiswaController extends Controller
     {
         $userId = Auth::user()->id_user;
         $mahasiswa = Mahasiswa::find($userId);
-        return view('main.dataDiri.biodata', compact('mahasiswa'));
+        return view('main.biodata', compact('mahasiswa'));
     }
 
     /**

@@ -12,4 +12,12 @@ document.addEventListener('DOMContentLoaded', () => {
             confirmButtonColor: '#2176ff',
         });
     }
+    
+    if (window.laravelSuccess) {
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: window.laravelSuccess,
+        });
+    }
 });

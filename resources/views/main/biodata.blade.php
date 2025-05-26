@@ -94,7 +94,7 @@
     </form>
     @push('scripts')
         @vite('resources/js/biodata.js')
-        @vite('resources/js/errorAlert.js')
+        @vite('resources/js/Alert.js')
     @endpush
     @push('scripts')
         @if ($errors->any() || session('error'))
@@ -108,6 +108,11 @@
                 @if (session('error'))
                     window.laravelErrors.push(@json(session('error')));
                 @endif
+            </script>
+        @endif
+        @if (session('success'))
+            <script>
+                window.laravelSuccess = @json(session('success'));
             </script>
         @endif
     @endpush

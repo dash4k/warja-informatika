@@ -14,7 +14,9 @@ class NilaiController extends Controller
      */
     public function index()
     {
-        //
+        $userId = Auth::user()->id_user;
+        $nilai = Nilai::find($userId);
+        return view('main.nilai', compact('nilai'));
     }
 
     /**
@@ -32,16 +34,32 @@ class NilaiController extends Controller
     {
         $validated = $this->validateSemester($request, $semester);
 
-        session(["main.dataDiri.nilai.semester{$semester}" => $validated]);
+        session(["nilai.semester{$semester}" => $validated]);
 
         if ($semester < 3) {
             return redirect()->route('nilai', ['semester' => $semester + 1]);
         }
 
+        return redirect()->route('transkrip');
+    }
+
+    public function transkrip()
+    {
+        return view('nilai.transkrip');
+    }
+
+    public function saveNilai(Request $request)
+    {
+        $request->validate([
+            'transkrip' => 'required|file|mimes:pdf|max:2048',
+        ]);
+
+        $filePath = $request->file('transkrip')->store('transkrip_files', 'public');
+
         $allData = array_merge(
-            session('main.dataDiri.nilai.semester1', []),
-            session('main.dataDiri.nilai.semester2', []),
-            session('main.dataDiri.nilai.semester3', []),
+            session('nilai.semester1', []),
+            session('nilai.semester2', []),
+            session('nilai.semester3', []),
         );
 
         $userId = Auth::user()->id_user;
@@ -72,15 +90,16 @@ class NilaiController extends Controller
             'pemrograman_berbasis_obyek' => $allData['pemrogramanBerbasisObyek'],
             'komunikasi_data_jaringan_komputer' => $allData['komunikasiDataJaringanKomputer'],
             'teori_bahasa_otomata' => $allData['teoriBahasaOtomata'],
+            'transkrip_sementara' => $filePath,
         ]);
 
         session()->forget([
-            'main.dataDiri.nilai.semester1',
-            'main.dataDiri.nilai.semester2',
-            'main.dataDiri.nilai.semester3',
+            'nilai.semester1',
+            'nilai.semester2',
+            'nilai.semester3',
         ]);
 
-        return redirect()->route('nilai', ['semester' => 1])->with('success', 'Sukses update nilai');
+        return redirect()->route('nilai')->with('success', 'Sukses menginput nilai');
     }
 
     private function validateSemester(Request $request, $semester)
@@ -130,8 +149,8 @@ class NilaiController extends Controller
      */
     public function show(Request $request, $semester)
     {
-        $data = session("main.dataDiri.nilai.semester{$semester}", []);
-        return view("main.dataDiri.nilai.semester{$semester}", ['data' => $data]);
+        $data = session("nilai.semester{$semester}", []);
+        return view("nilai.semester{$semester}", ['data' => $data]);
     }
 
     /**

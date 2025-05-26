@@ -37,6 +37,7 @@ return new class extends Migration
             $table->float('pemrograman_berbasis_obyek');
             $table->float('komunikasi_data_jaringan_komputer');
             $table->float('teori_bahasa_otomata');
+            $table->string('transkrip_sementara');
             $table->timestamps();
 
             $table->foreign('id_nilai')->references('nim')->on('mahasiswas')->onDelete('cascade');

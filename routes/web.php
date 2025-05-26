@@ -5,7 +5,6 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Main\BerkasController;
-use App\Http\Controllers\Main\DataDiriController;
 use App\Http\Controllers\Main\PenjaluranController;
 use App\Http\Controllers\Model\MahasiswaController;
 use App\Http\Controllers\Model\NilaiController;
@@ -30,7 +29,11 @@ Route::post('/biodata', [MahasiswaController::class, 'store'])->middleware('auth
 Route::put('/biodata', [MahasiswaController::class, 'update'])->middleware('auth');
 
 Route::get('/nilai/semester{semester}', [NilaiController::class, 'show'])->name('nilai')->middleware('auth');
+Route::get('/nilai', [NilaiController::class, 'index'])->name('nilai.index')->middleware('auth');
 Route::post('/nilai/semester{semester}', [NilaiController::class, 'store'])->middleware('auth');
+Route::get('/nilai/transkrip', [NilaiController::class, 'transkrip'])->name('transkrip')->middleware('auth');
+Route::post('/nilai/transkrip', [NilaiController::class, 'saveNilai'])->name('saveNilai')->middleware('auth');
+
 
 Route::get('/berkas', [BerkasController::class, 'index'])->name('berkas')->middleware('auth');
 
