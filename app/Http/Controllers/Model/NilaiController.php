@@ -99,7 +99,7 @@ class NilaiController extends Controller
             'nilai.semester3',
         ]);
 
-        return redirect()->route('nilai')->with('success', 'Sukses menginput nilai');
+        return redirect()->route('nilai.index')->with('success', 'Sukses menginput nilai');
     }
 
     private function validateSemester(Request $request, $semester)

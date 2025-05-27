@@ -10,7 +10,7 @@
                     
                     <div class="w-full">
                         <div class="flex flex-col items-center justify-center w-full text-center">
-                            <label for="transkrip" id="transkripLabel" class="flex flex-col items-center justify-center w-full lg:w-screen lg:max-w-[70dvh] h-30 lg:h-35 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
+                            <label for="transkrip" id="transkripLabel" class="flex flex-col items-center justify-center w-full lg:w-full h-30 lg:h-35 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
                                 <div class="flex flex-col items-center justify-center pt-5 pb-6 px-4 gap-3">
                                     <i class="fa-solid fa-cloud-arrow-up text-gray-400"></i>
                                     <p class="hidden lg:block mb-2 text-sm text-gray-500"><span class="font-semibold">Click to upload</span> or drag and drop</p>
@@ -19,6 +19,9 @@
                                 <input id="transkrip" name="transkrip" type="file" class="hidden" />
                             </label>
                             <p id="transkripErrorMessage" class="text-red-500 mt-1 text-xs w-full text-start"></p>
+                        </div>
+                        <div class="w-full flex flex-col justify-start items-center overflow-y-scroll gap-1 max-h-[100vh]" id="pdfContainer">
+
                         </div>
                     </div>
                 </div>
@@ -35,6 +38,7 @@
     </section>
     @push('scripts')
         @vite('resources/js/Alert.js')
+        @vite('resources/js/transkrip.js')
     @endpush
     @push('scripts')
         @if ($errors->any() || session('error'))

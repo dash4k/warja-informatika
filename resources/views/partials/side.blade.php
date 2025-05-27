@@ -36,7 +36,7 @@
             <h1 class="text-xs sideBarMenuLabel">Biodata</h1>
         </a>
 
-        <button id="resumeButton" class="sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('berkas') || request()->routeIs('nilai') || request()->routeIs('nilai.index'))
+        <button id="resumeButton" class="sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('berkas') || request()->routeIs('nilai') || request()->routeIs('nilai.index') || request()->routeIs('transkrip'))
                 bg-blue-50
                 text-blue-700
                 @else
@@ -53,7 +53,7 @@
             @else
                 href="{{ route('nilai', 1) }}"    
             @endif
-            class="sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('nilai') || request()->routeIs('nilai.index'))
+            class="sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('nilai') || request()->routeIs('nilai.index') || request()->routeIs('transkrip'))
                 bg-blue-50
                 text-blue-700
                 @else
