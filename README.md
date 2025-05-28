@@ -2,8 +2,6 @@
 
 <div align="center">
 
-## Wadah Analisis dan Rekomendasi Penjaluran Akademik
-
 </div>
 
 <!-- PROJECT LOGO -->
@@ -13,7 +11,7 @@
     <img src="https://github.com/dash4k/tugas-akhir-alpro-1/assets/133938416/ff71757a-1b51-44b7-b14e-b53b061d9815" alt="Logo" width="230" height="259">
   </a>
 
-<h3 align="center">Final Project Pemrograman Berbasis Web</h3>
+<h3 align="center">Wadah Analisis dan Rekomendasi Penjaluran Akademik</h3>
 
   <p align="center">
     An Academic Pathway Analysis and Recommendation System for Informatics Students at Udayana University
@@ -22,7 +20,7 @@
 </div>
 </br>
 
-## Build from source
+<h2 align="center">Build from source</h2>
 
 1. Clone the repo
    ```sh
@@ -61,18 +59,13 @@
    ```
 </br>
 
-
-
-<!-- CONTACT -->
-## Authors
-
-Danishwara Pracheta (2308561050): [@dash4k](https://www.github.com/dash4k)
-</br></br>
-Maliqy Tritata (2308561068): [@Maliqytritata](https://github.com/Maliqytritata)
-</br></br>
-Putu Mahayoni (2308561110)
-</br></br>
-Putu Krisna (2308561122): [@krisna554](https://github.com/krisna554)
-</br></br>
-Dewa Mahattama (2308561137): [@DewaMahattama](https://github.com/DewaMahattama)
-</br>
+<div align="center">
+  <h2>Tech stacks</h2>
+  <img src="https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&color=blue&logoColor=black">
+  <img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&color=blue&logoColor=black">
+  <img src="https://img.shields.io/badge/Composer-885630?style=for-the-badge&logo=Composer&color=blue&logoColor=black"> 
+  <img src="https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&color=blue&logoColor=black">
+  <img src="https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&color=blue&logoColor=black">
+  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&color=blue&logoColor=black">
+  <img src="https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&color=blue&logoColor=black">
+</div>
