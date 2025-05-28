@@ -30,27 +30,26 @@
    ```sh
    cd /warja-informatika
    ```
-3. Install Composer Dependencies
+3. Install Dependencies
    ```sh
    composer install
    ```
-4. Install NPM Dependencies
    ```sh
    npm install
    ```
-5. Create .env
+4. Create .env
    ```sh
    cp .env.example .env
    ```
-6. Generate Key
+5. Generate Key
    ```sh
    php artisan key:generate
    ```
-7. Migrate the Database
+6. Migrate the Database
    ```sh
    php artisan migrate
    ```
-8. Run the Servers
+7. Run the Servers
    ```sh
    php artisan serve
    ```
