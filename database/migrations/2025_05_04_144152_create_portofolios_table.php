@@ -13,9 +13,17 @@ return new class extends Migration
     {
         Schema::create('portofolios', function (Blueprint $table) {
             $table->id('id_portofolio');
+            $table->unsignedBigInteger('nim');
+            $table->date('tanggal_kegiatan');
+            $table->string('nama_kegiatan');
+            $table->string('tempat_kegiatan');
+            $table->string('bukti');
             $table->float('bobot');
+            $table->enum('status', ['accepted', 'rejected', 'pending'])->default('pending');
+            $table->enum('action', ['editable', 'locked'])->default('editable');
+            $table->timestamps();
 
-            $table->foreign('id_portofolio')->references('nim')->on('mahasiswas')->onDelete('cascade');
+            $table->foreign('nim')->references('nim')->on('mahasiswas')->onDelete('cascade');
         });
     }
 

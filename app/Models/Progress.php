@@ -5,23 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Mahasiswa extends Model
+class Progress extends Model
 {
     use HasFactory;
+
     protected $primaryKey = 'nim';
+
     public $incrementing = false;
+    
     protected $keyType = 'int';
 
-
     protected $fillable = [
-        "nim",
-        "nama",
-        "kelas",
-        "profile_picture",
+        'nim',
+        'progress_umum',
+        'progress_nilai',
     ];
 
-    public function progress()
+    public function mahasiswa()
     {
-        return $this->hasOne(Progress::class, 'nim', 'nim');
+        return $this->belongsTo(Mahasiswa::class);
     }
 }

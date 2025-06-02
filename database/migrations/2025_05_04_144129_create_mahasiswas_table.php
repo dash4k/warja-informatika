@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nama');
             $table->enum('kelas', ['a', 'b', 'c', 'd', 'e', 'f']);
             $table->string('profile_picture');
+            $table->timestamps();
             
             $table->foreign('nim')->references('id_user')->on('users')->onDelete('cascade');
         });

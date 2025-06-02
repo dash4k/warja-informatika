@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('admins', function (Blueprint $table) {
-            $table->id('id_admin');
-            $table->string('nama');
+        Schema::create('progress', function (Blueprint $table) {
+            $table->id('nim');
+            $table->integer('progress_umum')->default(1);
+            $table->integer('progress_nilai')->default(1);
+            $table->foreign('nim')->references('id_user')->on('users')->onDelete('cascade');
             $table->timestamps();
-            
-            $table->foreign('id_admin')->references('id_user')->on('users')->onDelete('cascade');
         });
     }
 
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('admins');
+        Schema::dropIfExists('progress');
     }
 };

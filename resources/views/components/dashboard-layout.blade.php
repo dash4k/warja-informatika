@@ -18,7 +18,8 @@
         <main>
             {{ $slot }}
         </main>
-
+        
+        @include('partials.footer-dashboard')
         @stack('scripts')
     </body>
 </html>

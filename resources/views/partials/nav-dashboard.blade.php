@@ -1,5 +1,5 @@
 {{-- Penjaluran Navbar --}}
-<nav class="fixed z-80 top-0 left-0 w-screen h-auto border-b-2 p-3 border-lightGray bg-white font-outfit">
+<nav class="fixed z-80 top-0 left-0 w-screen h-auto border-b-2 py-3 border-lightGray bg-white font-outfit">
 
     {{-- Container --}}
     <div class="flex flex-row justify-between items-center">
@@ -18,7 +18,7 @@
 
         {{-- NIM/NPDN display --}}
         <div class="hidden lg:flex flex-row items-center justify-end gap-2">
-            <h1 class="flex flex-row items-center text-sm lg:text-base font-outfit">{{ auth()->user()->id_user }}</h1>
+            <h1 class="flex flex-row items-center text-sm lg:text-sm font-roboto">{{ auth()->user()->id_user }}</h1>
 
             {{-- Drop down toggle (desktop) --}}
             <button class="text-gray-700 focus:outline-none hover:cursor-pointer" id="settingsToggle">
@@ -48,7 +48,7 @@
         {{-- Logout button --}}
         <button type="submit" class="w-full hover:cursor-pointer rounded-xl hover:bg-lightGray px-2 py-1">
             <div class="flex flex-row justify-evenly items-center">
-                <h1 class="font-outfit text-sm font-bold">Logout</h1>
+                <h1 class="font-roboto text-sm font-bold">Logout</h1>
                 <i class="fa-solid fa-right-from-bracket"></i>
             </div>
         </button>

@@ -20,21 +20,29 @@ class NilaiController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request, $semester)
     {
+        $user = Auth::user();
+        $mahasiswa = $user->mahasiswa;
+        $progression = $mahasiswa->progress;
+
+        $nilai = Nilai::firstOrNew(['id_nilai' => $user->id_user]);
+
         $validated = $this->validateSemester($request, $semester);
 
-        session(["nilai.semester{$semester}" => $validated]);
+        foreach ($validated as $key => $value) {
+            $dbField = \Illuminate\Support\Str::snake($key);
+            $nilai->$dbField = $value;
+        }
+
+        $nilai->save();
+
+        $progressionMap = [1 => 2, 2 => 3, 3 => 4];
+        if (isset($progressionMap[$semester])) {
+            $progression->update(['progress_nilai' => $progressionMap[$semester]]);
+        }
 
         if ($semester < 3) {
             return redirect()->route('nilai', ['semester' => $semester + 1]);
@@ -43,11 +51,17 @@ class NilaiController extends Controller
         return redirect()->route('transkrip');
     }
 
+    /**
+     * Show the form to upload transkrip file.
+     */
     public function transkrip()
     {
         return view('nilai.transkrip');
     }
 
+    /**
+     * Save the uploaded transkrip file.
+     */
     public function saveNilai(Request $request)
     {
         $request->validate([
@@ -56,52 +70,72 @@ class NilaiController extends Controller
 
         $filePath = $request->file('transkrip')->store('transkrip_files', 'public');
 
-        $allData = array_merge(
-            session('nilai.semester1', []),
-            session('nilai.semester2', []),
-            session('nilai.semester3', []),
-        );
+        $user = Auth::user();
 
-        $userId = Auth::user()->id_user;
+        $nilai = Nilai::where('id_nilai', $user->id_user)->firstOrFail();
 
-        Nilai::create([
-            'id_nilai' => $userId,
-            'etika_profesi' => $allData['etikaProfesi'],
-            'kewarganegaraan' => $allData['kewarganegaraan'],
-            'bahasa_indonesia' => $allData['bahasaIndonesia'],
-            'matematika_diskrit_1' => $allData['matematikaDiskrit1'],
-            'statistika_dasar' => $allData['statistikaDasar'],
-            'algoritma_pemrograman' => $allData['algoritmaPemrograman'],
-            'sistem_digital' => $allData['sistemDigital'],
-            'matematika_informatika' => $allData['matematikaInformatika'],
-            'pancasila' => $allData['pancasila'],
-            'pendidikan_agama' => $allData['pendidikanAgama'],
-            'matematika_diskrit_2' => $allData['matematikaDiskrit2'],
-            'pengantar_probabilitas' => $allData['pengantarProbabilitas'],
-            'kewirausahaan' => $allData['kewirausahaan'],
-            'tata_tulis_karya_ilmiah' => $allData['tataTulisKaryaIlmiah'],
-            'struktur_data' => $allData['strukturData'],
-            'sistem_operasi' => $allData['sistemOperasi'],
-            'organisasi_arsitektur_komputer' => $allData['organisasiArsitekturKomputer'],
-            'interaksi_manusia_komputer' => $allData['interaksiManusiaKomputer'],
-            'basis_data' => $allData['basisData'],
-            'desain_analisis_algoritma' => $allData['desainAnalisisAlgoritma'],
-            'rekayasa_perangkat_lunak' => $allData['rekayasaPerangkatLunak'],
-            'pemrograman_berbasis_obyek' => $allData['pemrogramanBerbasisObyek'],
-            'komunikasi_data_jaringan_komputer' => $allData['komunikasiDataJaringanKomputer'],
-            'teori_bahasa_otomata' => $allData['teoriBahasaOtomata'],
-            'transkrip_sementara' => $filePath,
-        ]);
+        $nilai->transkrip_sementara = $filePath;
+        $nilai->save();
 
-        session()->forget([
-            'nilai.semester1',
-            'nilai.semester2',
-            'nilai.semester3',
-        ]);
+        $user->mahasiswa->progress->update(['progress_nilai' => 5]);
+
+        $user->mahasiswa->progress->update(['progress_umum' => 2]);
 
         return redirect()->route('nilai.index')->with('success', 'Sukses menginput nilai');
     }
 
+    /**
+     * Show semester data from database instead of session.
+     */
+    public function show(Request $request, $semester)
+    {
+        $userId = Auth::user()->id_user;
+        $nilai = Nilai::find($userId);
+
+        $data = [];
+        if ($nilai) {
+            if ($semester == 1) {
+                $data = [
+                    'etikaProfesi' => $nilai->etika_profesi,
+                    'kewarganegaraan' => $nilai->kewarganegaraan,
+                    'bahasaIndonesia' => $nilai->bahasa_indonesia,
+                    'matematikaDiskrit_1' => $nilai->matematika_diskrit_1,
+                    'statistikaDasar' => $nilai->statistika_dasar,
+                    'algoritmaPemrograman' => $nilai->algoritma_pemrograman,
+                    'sistemDigital' => $nilai->sistem_digital,
+                    'matematikaInformatika' => $nilai->matematika_informatika,
+                ];
+            } elseif ($semester == 2) {
+                $data = [
+                    'pancasila' => $nilai->pancasila,
+                    'pendidikanAgama' => $nilai->pendidikan_agama,
+                    'matematikaDiskrit_2' => $nilai->matematika_diskrit_2,
+                    'pengantarProbabilitas' => $nilai->pengantar_probabilitas,
+                    'kewirausahaan' => $nilai->kewirausahaan,
+                    'tataTulisKaryaIlmiah' => $nilai->tata_tulis_karya_ilmiah,
+                    'strukturData' => $nilai->struktur_data,
+                    'sistemOperasi' => $nilai->sistem_operasi,
+                    'organisasiArsitekturKomputer' => $nilai->organisasi_arsitektur_komputer,
+                ];
+            } elseif ($semester == 3) {
+                $data = [
+                    'interaksiManusiaKomputer' => $nilai->interaksi_manusia_komputer,
+                    'basisData' => $nilai->basis_data,
+                    'desainAnalisisAlgoritma' => $nilai->desain_analisis_algoritma,
+                    'rekayasaPerangkatLunak' => $nilai->rekayasa_perangkat_lunak,
+                    'pemrogramanBerbasisObyek' => $nilai->pemrograman_berbasis_obyek,
+                    'komunikasiDataJaringanKomputer' => $nilai->komunikasi_data_jaringan_komputer,
+                    'teoriBahasaOtomata' => $nilai->teori_bahasa_otomata,
+                ];
+            }
+        }
+
+        return view("nilai.semester{$semester}", ['data' => $data]);
+    }
+
+    /**
+     * Validate semester fields.
+     */
     private function validateSemester(Request $request, $semester)
     {
         $rules = [];
@@ -111,7 +145,7 @@ class NilaiController extends Controller
                 'etikaProfesi' => 'required|decimal:0,4',
                 'kewarganegaraan' => 'required|decimal:0,4',
                 'bahasaIndonesia' => 'required|decimal:0,4',
-                'matematikaDiskrit1' => 'required|decimal:0,4',
+                'matematikaDiskrit_1' => 'required|decimal:0,4',
                 'statistikaDasar' => 'required|decimal:0,4',
                 'algoritmaPemrograman' => 'required|decimal:0,4',
                 'sistemDigital' => 'required|decimal:0,4',
@@ -121,7 +155,7 @@ class NilaiController extends Controller
             $rules = [
                 'pancasila' => 'required|decimal:0,4',
                 'pendidikanAgama' => 'required|decimal:0,4',
-                'matematikaDiskrit2' => 'required|decimal:0,4',
+                'matematikaDiskrit_2' => 'required|decimal:0,4',
                 'pengantarProbabilitas' => 'required|decimal:0,4',
                 'kewirausahaan' => 'required|decimal:0,4',
                 'tataTulisKaryaIlmiah' => 'required|decimal:0,4',
@@ -142,38 +176,5 @@ class NilaiController extends Controller
         }
 
         return $request->validate($rules);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Request $request, $semester)
-    {
-        $data = session("nilai.semester{$semester}", []);
-        return view("nilai.semester{$semester}", ['data' => $data]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

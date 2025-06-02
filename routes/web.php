@@ -8,6 +8,8 @@ use App\Http\Controllers\Main\BerkasController;
 use App\Http\Controllers\Main\PenjaluranController;
 use App\Http\Controllers\Model\MahasiswaController;
 use App\Http\Controllers\Model\NilaiController;
+use App\Http\Middleware\ProgressMahasiswa;
+use App\Http\Middleware\ProgressNilai;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -28,13 +30,13 @@ Route::get('/biodata', [MahasiswaController::class, 'index'])->name('biodata')->
 Route::post('/biodata', [MahasiswaController::class, 'store'])->middleware('auth');
 Route::put('/biodata', [MahasiswaController::class, 'update'])->middleware('auth');
 
-Route::get('/nilai/semester{semester}', [NilaiController::class, 'show'])->name('nilai')->middleware('auth');
-Route::get('/nilai', [NilaiController::class, 'index'])->name('nilai.index')->middleware('auth');
-Route::post('/nilai/semester{semester}', [NilaiController::class, 'store'])->middleware('auth');
-Route::get('/nilai/transkrip', [NilaiController::class, 'transkrip'])->name('transkrip')->middleware('auth');
-Route::post('/nilai/transkrip', [NilaiController::class, 'saveNilai'])->name('saveNilai')->middleware('auth');
+Route::get('/nilai/semester{semester}', [NilaiController::class, 'show'])->name('nilai')->middleware('auth')->middleware(ProgressNilai::class)->middleware(ProgressMahasiswa::class);
+Route::get('/nilai', [NilaiController::class, 'index'])->name('nilai.index')->middleware('auth')->middleware(ProgressNilai::class)->middleware(ProgressMahasiswa::class);
+Route::post('/nilai/semester{semester}', [NilaiController::class, 'store'])->middleware('auth')->middleware(ProgressNilai::class)->middleware(ProgressMahasiswa::class);
+Route::get('/nilai/transkrip', [NilaiController::class, 'transkrip'])->name('transkrip')->middleware('auth')->middleware(ProgressNilai::class)->middleware(ProgressMahasiswa::class);
+Route::post('/nilai/transkrip', [NilaiController::class, 'saveNilai'])->name('saveNilai')->middleware('auth')->middleware(ProgressNilai::class)->middleware(ProgressMahasiswa::class);
 
 
-Route::get('/berkas', [BerkasController::class, 'index'])->name('berkas')->middleware('auth');
+Route::get('/berkas', [BerkasController::class, 'index'])->name('berkas')->middleware('auth')->middleware(ProgressMahasiswa::class);
 
-Route::get('/penjaluran', [PenjaluranController::class, 'index'])->name('penjaluran')->middleware('auth');
+Route::get('/penjaluran', [PenjaluranController::class, 'index'])->name('penjaluran')->middleware('auth')->middleware(ProgressMahasiswa::class);

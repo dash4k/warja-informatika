@@ -11,7 +11,6 @@ class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
-    public $timestamps = false;
 
     protected $primaryKey = 'id_user';
 
@@ -47,5 +46,20 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function mahasiswa()
+    {
+        return $this->hasOne(Mahasiswa::class, 'nim', 'id_user');
+    }
+
+    public function dosen()
+    {
+        return $this->hasOne(Dosen::class);
+    }
+
+    public function isMahasiswa()
+    {
+        return $this->mahasiswa()->exists();
     }
 }

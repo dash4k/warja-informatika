@@ -12,7 +12,7 @@
     </a>
 
     {{-- Menus container --}}
-    <div class="flex flex-col items-center gap-2 mt-7 font-outfit transition-all duration-300">
+    <div class="flex flex-col items-center gap-2 mt-7 font-outfit transition-all duration-300 font-roboto text-black">
 
         {{-- Dashboard --}}
         <a href="{{ route('dashboard') }}" class="sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('dashboard'))
@@ -36,7 +36,7 @@
             <h1 class="text-xs sideBarMenuLabel">Biodata</h1>
         </a>
 
-        <button id="resumeButton" class="sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('berkas') || request()->routeIs('nilai') || request()->routeIs('nilai.index') || request()->routeIs('transkrip'))
+        <button @if (auth()->user()->mahasiswa?->progress?->progress_umum < 1) disabled @endif id="resumeButton" class="@if (auth()->user()->mahasiswa?->progress?->progress_umum < 1) pointer-events-none text-gray-400 @endif p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('berkas') || request()->routeIs('nilai') || request()->routeIs('nilai.index') || request()->routeIs('transkrip'))
                 bg-blue-50
                 text-blue-700
                 @else
@@ -48,12 +48,17 @@
         <div id="resumeContainer" class="w-4/5 flex flex-col items-end justify-center gap-2 transition-all duration-300">
                         
             {{-- Nilai --}}
-            <a @if (Nilai::find(auth()->user()->id_user))
-                href="{{ route('nilai.index') }}"    
+            <a 
+            @if (auth()->user()->mahasiswa?->progress?->progress_umum < 1)
+                href=""
             @else
-                href="{{ route('nilai', 1) }}"    
+                @if (auth()->user()->mahasiswa?->progress?->progress_nilai === 5)
+                    href="{{ route('nilai.index') }}"    
+                @else
+                    href="{{ route('nilai', auth()->user()->mahasiswa?->progress?->progress_nilai ?? 1) }}"    
+                @endif
             @endif
-            class="sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('nilai') || request()->routeIs('nilai.index') || request()->routeIs('transkrip'))
+            class="@if (auth()->user()->mahasiswa?->progress?->progress_umum < 1) pointer-events-none text-gray-400 @endif sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('nilai') || request()->routeIs('nilai.index') || request()->routeIs('transkrip'))
                 bg-blue-50
                 text-blue-700
                 @else
@@ -64,7 +69,13 @@
             </a>
 
             {{-- Berkas --}}
-            <a href="{{ route('berkas') }}" class="sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('berkas'))
+            <a 
+            @if (auth()->user()->mahasiswa?->progress?->progress_umum < 1)
+                href=""
+            @else
+                href="{{ route('berkas') }}" 
+            @endif
+                class="@if (auth()->user()->mahasiswa?->progress?->progress_umum < 1) pointer-events-none text-gray-400 @endif sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('berkas'))
                 bg-blue-50
                 text-blue-700
                 @else
@@ -78,7 +89,12 @@
 
 
         {{-- Penjaluran --}}
-        <a href="{{ route('penjaluran') }}" class="sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('penjaluran'))
+        <a 
+        @if (auth()->user()->mahasiswa?->progress?->progress_umum < 2)
+            href=""
+        @else
+            href="{{ route('penjaluran') }}"
+        @endif class="@if (auth()->user()->mahasiswa?->progress?->progress_umum < 2) pointer-events-none text-gray-400 @endif sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('penjaluran'))
             bg-blue-50
             text-blue-700
             @else

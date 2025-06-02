@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Model;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Mahasiswa;
+use App\Models\Progress;
 use Illuminate\Http\Request;
 
 class MahasiswaController extends Controller
@@ -47,6 +48,10 @@ class MahasiswaController extends Controller
             'nama' => $request->input('namaLengkap'),
             'kelas' => $request->input('kelas'),
             'profile_picture' => $imagePath,
+        ]);
+
+        Progress::create([
+            'nim' => $userId,
         ]);
 
         return redirect()->back()->with('success', 'Biodata saved successfully.');

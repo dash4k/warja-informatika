@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('dosens', function (Blueprint $table) {
             $table->id('npdn');
             $table->string('nama');
+            $table->timestamps();
             
             $table->foreign('npdn')->references('id_user')->on('users')->onDelete('cascade');
         });
