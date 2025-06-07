@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('portofolios', function (Blueprint $table) {
             $table->id('id_portofolio');
             $table->unsignedBigInteger('nim');
-            $table->date('tanggal_kegiatan');
+            $table->date('tanggal_mulai');
+            $table->date('tanggal_berakhir');
             $table->string('nama_kegiatan');
             $table->string('tempat_kegiatan');
             $table->string('bukti');

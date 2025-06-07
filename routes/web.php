@@ -4,10 +4,11 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\Main\BerkasController;
 use App\Http\Controllers\Main\PenjaluranController;
 use App\Http\Controllers\Model\MahasiswaController;
 use App\Http\Controllers\Model\NilaiController;
+use App\Http\Controllers\Model\PortofolioController;
+use App\Http\Middleware\PortofolioMiddleware;
 use App\Http\Middleware\ProgressMahasiswa;
 use App\Http\Middleware\ProgressNilai;
 use Illuminate\Support\Facades\Route;
@@ -28,7 +29,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 Route::get('/biodata', [MahasiswaController::class, 'index'])->name('biodata')->middleware('auth');
 Route::post('/biodata', [MahasiswaController::class, 'store'])->middleware('auth');
-Route::put('/biodata', [MahasiswaController::class, 'update'])->middleware('auth');
+Route::put('/biodata/{id}', [MahasiswaController::class, 'update'])->middleware('auth');
 
 Route::get('/nilai/semester{semester}', [NilaiController::class, 'show'])->name('nilai')->middleware('auth')->middleware(ProgressNilai::class)->middleware(ProgressMahasiswa::class);
 Route::get('/nilai', [NilaiController::class, 'index'])->name('nilai.index')->middleware('auth')->middleware(ProgressNilai::class)->middleware(ProgressMahasiswa::class);
@@ -36,7 +37,8 @@ Route::post('/nilai/semester{semester}', [NilaiController::class, 'store'])->mid
 Route::get('/nilai/transkrip', [NilaiController::class, 'transkrip'])->name('transkrip')->middleware('auth')->middleware(ProgressNilai::class)->middleware(ProgressMahasiswa::class);
 Route::post('/nilai/transkrip', [NilaiController::class, 'saveNilai'])->name('saveNilai')->middleware('auth')->middleware(ProgressNilai::class)->middleware(ProgressMahasiswa::class);
 
-
-Route::get('/berkas', [BerkasController::class, 'index'])->name('berkas')->middleware('auth')->middleware(ProgressMahasiswa::class);
+Route::get('/portofolio', [PortofolioController::class, 'index'])->name('portofolio')->middleware('auth')->middleware(ProgressNilai::class);
+Route::post('/portofolio', [PortofolioController::class, 'store'])->middleware('auth')->middleware(ProgressNilai::class);
+Route::put('/portofolio/{id}', [PortofolioController::class, 'update'])->middleware('auth')->middleware(ProgressNilai::class)->middleware(PortofolioMiddleware::class);
 
 Route::get('/penjaluran', [PenjaluranController::class, 'index'])->name('penjaluran')->middleware('auth')->middleware(ProgressMahasiswa::class);

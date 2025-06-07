@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('nim');
             $table->integer('progress_umum')->default(1);
             $table->integer('progress_nilai')->default(1);
-            $table->foreign('nim')->references('id_user')->on('users')->onDelete('cascade');
+            $table->foreign('nim')->references('nim')->on('mahasiswas')->onDelete('cascade');
             $table->timestamps();
         });
     }

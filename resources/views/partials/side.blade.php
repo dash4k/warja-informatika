@@ -36,7 +36,7 @@
             <h1 class="text-xs sideBarMenuLabel">Biodata</h1>
         </a>
 
-        <button @if (auth()->user()->mahasiswa?->progress?->progress_umum < 1) disabled @endif id="resumeButton" class="@if (auth()->user()->mahasiswa?->progress?->progress_umum < 1) pointer-events-none text-gray-400 @endif p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('berkas') || request()->routeIs('nilai') || request()->routeIs('nilai.index') || request()->routeIs('transkrip'))
+        <button @if (auth()->user()->mahasiswa?->progress?->progress_umum < 1) disabled @endif id="resumeButton" class="@if (auth()->user()->mahasiswa?->progress?->progress_umum < 1) pointer-events-none text-gray-400 @endif p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('portofolio') || request()->routeIs('nilai') || request()->routeIs('nilai.index') || request()->routeIs('transkrip'))
                 bg-blue-50
                 text-blue-700
                 @else
@@ -73,9 +73,9 @@
             @if (auth()->user()->mahasiswa?->progress?->progress_umum < 1)
                 href=""
             @else
-                href="{{ route('berkas') }}" 
+                href="{{ route('portofolio') }}" 
             @endif
-                class="@if (auth()->user()->mahasiswa?->progress?->progress_umum < 1) pointer-events-none text-gray-400 @endif sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('berkas'))
+                class="@if (auth()->user()->mahasiswa?->progress?->progress_umum < 1) pointer-events-none text-gray-400 @endif sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('portofolio'))
                 bg-blue-50
                 text-blue-700
                 @else

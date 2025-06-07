@@ -52,14 +52,24 @@ class User extends Authenticatable
     {
         return $this->hasOne(Mahasiswa::class, 'nim', 'id_user');
     }
+    
+    public function admin()
+    {
+        return $this->hasOne(Admin::class, 'id_admin', 'id_user');
+    }
 
     public function dosen()
     {
-        return $this->hasOne(Dosen::class);
+        return $this->hasOne(Dosen::class, 'npdn', 'id_user');
     }
 
     public function isMahasiswa()
     {
         return $this->mahasiswa()->exists();
+    }
+
+    public function isAdmin()
+    {
+        return $this->admin()->exists();
     }
 }
