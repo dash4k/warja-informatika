@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const pengumumanToggle = document.getElementById('togglePengumumanDashboard');
     const panduanToggle = document.getElementById('togglePanduanDashboard');
+    const panduanContainer = document.getElementById('panduanContainer');
 
     // Pengumuman button event listener
     pengumumanToggle.addEventListener('click', () => {
@@ -9,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
             pengumumanToggle.classList.toggle('bg-white');
             panduanToggle.classList.toggle('text-darkBlue');
             panduanToggle.classList.toggle('bg-white');
+            panduanContainer.classList.add('hidden');
         }
     });
     
@@ -19,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
             pengumumanToggle.classList.toggle('bg-white');
             panduanToggle.classList.toggle('text-darkBlue');
             panduanToggle.classList.toggle('bg-white');
+            panduanContainer.classList.remove('hidden');
         }
     });
 });

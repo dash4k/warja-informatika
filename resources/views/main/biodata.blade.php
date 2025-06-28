@@ -46,7 +46,7 @@
                     {{-- Email --}}
                     <div>
                         <label class="font-bold text-gray-400">Email</label>
-                        <div class="bg-lightGray text-darkGray py-2 pl-1 text-sm">
+                        <div class="bg-lightGray text-darkGray py-2 pl-1 text-sm break-all">
                             {{ auth()->user()->email }}
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                     {{-- NIM/NPDN --}}
                     <div>
                         <label class="font-bold text-gray-400">NIM</label>
-                        <div class="bg-lightGray text-darkGray py-2 pl-1 text-sm">
+                        <div class="bg-lightGray text-darkGray py-2 pl-1 text-sm break-all">
                             {{ auth()->user()->id_user }}
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                 {{-- Nama --}}
                 <div class="w-full lg:w-1/2">
                     <label for="namaLengkap" id="namaLengkapLabel" class="font-bold text-gray-400 block">Nama Lengkap</label>
-                    <input name="namaLengkap" id="namaLengkap" value="{{ old('namaLengkap', $mahasiswa?->nama) }}" type="text" class="bg-lightGray w-full text-darkGray py-2 pl-1 text-sm placeholder:text-gray-400" placeholder="John Doe">
+                    <input name="namaLengkap" id="namaLengkap" value="{{ old('namaLengkap', $mahasiswa?->nama) }}" type="text" class="bg-lightGray w-full text-darkGray py-2 pl-1 text-sm placeholder:text-gray-400 break-all" placeholder="John Doe">
                     <p id="namaLengkapErrorMessage" class="text-red-500 mt-1 text-xs"></p>
                 </div>
                 

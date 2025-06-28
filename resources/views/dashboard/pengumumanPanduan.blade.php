@@ -22,8 +22,50 @@
         </div>
 
         {{-- Pengumuman dan panduan content container --}}
-        <div class="rounded-b-2xl p-3 bg-white w-full h-[66dvh] border-x-2 border-b-2 border-t-3 border-lightGray flex flex-row">
-            
+        <div class="rounded-b-2xl p-3 bg-white w-full h-[66dvh] border-x-2 border-b-2 border-t-3 font-roboto border-lightGray flex flex-row">
+            <div class="w-full h-full flex flex-col gap-3 hidden" id="panduanContainer">
+                <h2 class="text-xl font-bold">Todo List:</h2>
+                @if (auth()->user()->mahasiswa?->progress?->progress_umum < 1)
+                    <div>
+                        <input type="checkbox" name="" id="1" disabled>
+                        <label for="1"><a href="{{ route('biodata') }}">Isi Biodata</a></label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="" id="2" disabled>
+                        <label for="2" class="text-gray-400">Isi Data Nilai</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="" id="1" disabled>
+                        <label for="1" class="text-gray-400">Kerjakan Tes Penjaluran</label>
+                    </div>
+                @elseif (auth()->user()->mahasiswa?->progress?->progress_umum < 2)
+                    <div>
+                        <input type="checkbox" checked name="" id="1" disabled>
+                        <label for="1" class="line-through text-gray-400">Isi Biodata</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="" id="2" disabled>
+                        <label for="2"><a href="{{ route('nilai', auth()->user()->mahasiswa?->progress?->progress_nilai ?? 1) }}">Isi Data Nilai</a></label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="" id="1" disabled>
+                        <label for="1" class="text-gray-400">Kerjakan Tes Penjaluran</label>
+                    </div>
+                @elseif (auth()->user()->mahasiswa?->progress?->progress_umum < 3)
+                    <div>
+                        <input type="checkbox" checked name="" id="1" disabled>
+                        <label for="1" class="line-through text-gray-400">Isi Biodata</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" checked name="" id="2" disabled>
+                        <label for="2" class="line-through text-gray-400">Isi Data Nilai</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="" id="1" disabled>
+                        <label for="1"><a href="{{ route('penjaluran') }}">Kerjakan Tes Penjaluran</a></label>
+                    </div>
+                @endif
+            </div>
         </div> 
     </div>
 </section>

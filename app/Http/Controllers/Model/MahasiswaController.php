@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Model;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Models\JumlahPortofolio;
 use App\Models\Mahasiswa;
 use App\Models\Progress;
 use Illuminate\Http\Request;
@@ -51,6 +52,10 @@ class MahasiswaController extends Controller
         ]);
 
         Progress::create([
+            'nim' => $userId,
+        ]);
+
+        JumlahPortofolio::create([
             'nim' => $userId,
         ]);
 

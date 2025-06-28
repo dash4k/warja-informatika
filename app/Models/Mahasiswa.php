@@ -24,4 +24,9 @@ class Mahasiswa extends Model
     {
         return $this->hasOne(Progress::class, 'nim', 'nim');
     }
+
+    public function jumlahPortofolio()
+    {
+        return $this->hasOne(JumlahPortofolio::class, 'nim', 'nim');
+    }
 }

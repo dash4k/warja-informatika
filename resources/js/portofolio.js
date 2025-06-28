@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputs = {
         nama: document.getElementById('namaKegiatan'),
         bobot: document.getElementById('bobot'),
+        jalur: document.getElementById('jalur'),
         mulai: document.getElementById('tanggalMulai'),
         berakhir: document.getElementById('tanggalBerakhir'),
         tempat: document.getElementById('tempatKegiatan'),
@@ -46,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function populateForm(data) {
         inputs.nama.value = data.nama;
         inputs.bobot.value = data.bobot;
+        inputs.bobot.jalur = data.jalur;
         inputs.mulai.value = data.mulai;
         inputs.berakhir.value = data.berakhir;
         inputs.tempat.value = data.tempat;
@@ -66,6 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 id: row.dataset.id,
                 nama: row.dataset.nama,
                 bobot: row.dataset.bobot,
+                jalur: row.dataset.jalur,
                 mulai: row.dataset.mulai,
                 berakhir: row.dataset.berakhir,
                 tempat: row.dataset.tempat,

@@ -16,6 +16,7 @@
                         <th class="border px-4 py-2">Tempat</th>
                         <th class="border px-4 py-2">Bukti</th>
                         <th class="border px-4 py-2">Bobot</th>
+                        <th class="border px-4 py-2">Jalur</th>
                         <th class="border px-4 py-2">Status</th>
                         <th class="border px-4 py-2">Action</th>
                     </tr>
@@ -26,6 +27,7 @@
                             data-id="{{ $p->id_portofolio }}"
                             data-nama="{{ $p->nama_kegiatan }}"
                             data-bobot="{{ $p->bobot }}"
+                            data-jalur="{{ $p->jalur }}"
                             data-mulai="{{ $p->tanggal_mulai }}"
                             data-berakhir="{{ $p->tanggal_berakhir }}"
                             data-tempat="{{ $p->tempat_kegiatan }}"
@@ -37,6 +39,7 @@
                                 <a href="{{ asset('storage/' . $p->bukti) }}" target="_blank" class="text-blue-600 hover:cursor-pointer" title="Attachment"><i class="fa-solid fa-link"></i></a>
                             </td>
                             <td class="border px-4 py-2">{{ $p->bobot }}</td>
+                            <td class="border px-4 py-2 capitalize">{{ $p->jalur }}</td>
                             @switch($p->status)
                                 @case('accepted')
                                     <td class="border px-4 py-2"><i class="fa-solid fa-circle-check text-lg" title="Accepted"></i></td>
@@ -48,12 +51,12 @@
                                     <td class="border px-4 py-2"><i class="fa-solid fa-clock text-lg" title="Pending"></i></td>
                             @endswitch
                             @switch($p->action)
-                                @case('locked')
-                                    <td class="border px-4 py-2"><i class="fa-solid fa-lock text-lg" title="Locked"></i></td>
+                                @case('editable')
+                                    <td class="border px-4 py-2"><button type="button" class="editButton bg-yellow-300 hover:bg-yellow-200 px-2 py-1 rounded hover:cursor-pointer" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button></td>
                                     @break                                
                                 @default
-                                    <td class="border px-4 py-2"><button type="button" class="editButton bg-yellow-300 hover:bg-yellow-200 px-2 py-1 rounded hover:cursor-pointer" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button></td>
-                            @endswitch
+                                    <td class="border px-4 py-2"><i class="fa-solid fa-lock text-lg" title="Locked"></i></td>
+                                @endswitch
                                 {{-- <td class="border px-4 py-2 capitalize">{{ $p->action }}</td> --}}
                             </tr>
                     @empty
@@ -98,10 +101,26 @@
                             <p id="tanggalBerakhirErrorMessage" class="text-red-500 mt-1 text-xs"></p>
                         </div>
                     </div>
-                    <div class="mb-2">
-                        <label for="tempatKegiatan" class="block mb-2 text-sm font-light text-gray-900">Tempat Kegiatan</label>
-                        <input type="text" id="tempatKegiatan" name="tempatKegiatan" placeholder="" class="border p-2 w-full rounded-md">
-                        <p id="tempatKegiatanErrorMessage" class="text-red-500 mt-1 text-xs"></p>
+                    <div class="mb-2 flex flex-row justify-center items-start gap-1">
+                        <div class="w-7/8">
+                            <label for="tempatKegiatan" class="block mb-2 text-sm font-light text-gray-900">Tempat Kegiatan</label>
+                            <input type="text" id="tempatKegiatan" name="tempatKegiatan" placeholder="" class="border p-2 w-full rounded-md">
+                            <p id="tempatKegiatanErrorMessage" class="text-red-500 mt-1 text-xs"></p>
+                        </div>
+                        <div class="w-1/8">
+                            <label for="jalur" class="block mb-2 text-sm font-light text-gray-900">Jalur</label>
+                            <select id="jalur" name="jalur" class="border p-2 py-3 w-full rounded-md bg-white h-auto">
+                            <option value="j1">J1</option>
+                            <option value="j2">J2</option>
+                            <option value="j3">J3</option>
+                            <option value="j4">J4</option>
+                            <option value="j5">J5</option>
+                            <option value="j6">J6</option>
+                            <option value="j7">J7</option>
+                            <option value="j8">J8</option>
+                            <option value="j9">J9</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="mb-2">
                         <label for="bukti" class="block mb-2 text-sm font-light text-gray-900">Bukti/Sertifikat</label>

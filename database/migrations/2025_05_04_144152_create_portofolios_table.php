@@ -20,8 +20,9 @@ return new class extends Migration
             $table->string('tempat_kegiatan');
             $table->string('bukti');
             $table->float('bobot');
+            $table->enum('jalur', ['j1', 'j2', 'j3', 'j4', 'j5', 'j6', 'j7', 'j8', 'j9']);
             $table->enum('status', ['accepted', 'rejected', 'pending'])->default('pending');
-            $table->enum('action', ['editable', 'locked'])->default('editable');
+            $table->enum('action', ['editable', 'locked'])->default('locked');
             $table->timestamps();
 
             $table->foreign('nim')->references('nim')->on('mahasiswas')->onDelete('cascade');
