@@ -2,70 +2,110 @@ document.addEventListener('DOMContentLoaded', () => {
     const hamburgerButton = document.getElementById('humburgerToggle');
     const resumeButton = document.getElementById('resumeButton');
     const resumeContainer = document.getElementById('resumeContainer');
+    const validatedButton = document.getElementById('validatedButton');
+    const validatedContainer = document.getElementById('validatedContainer');
+    const unvalidatedButton = document.getElementById('unvalidatedButton');
+    const unvalidatedContainer = document.getElementById('unvalidatedContainer');
     const sidebarEl = document.getElementById('sidebar');
     let toggled = false;
 
-    resumeButton.addEventListener('click', () => {
-        const isCollapsed = sidebarEl.classList.contains('lg:w-1/12');
-        if (!isCollapsed) {
-            resumeContainer.classList.toggle('hidden');
-        }
-    })
-
-    hamburgerButton.addEventListener('click', () => {
-        const isMobile = window.innerWidth < 1024;
-        toggled = !toggled;
-
-        if (isMobile) {
-            sidebarEl.classList.toggle('hidden');
-        } else {
-            toggleSidebar(sidebarEl);
-            resumeContainer.classList.add('hidden');
-        }
-        if (!isMobile) {
-            if (toggled) {
-                sidebarEl.addEventListener('mouseenter', handleMouseEnter);
-                sidebarEl.addEventListener('mouseleave', handleMouseLeave);
-            } else {
-                sidebarEl.removeEventListener('mouseenter', handleMouseEnter);
-                sidebarEl.removeEventListener('mouseleave', handleMouseLeave);
+    // Resume section
+    if (resumeButton && resumeContainer) {
+        resumeButton.addEventListener('click', () => {
+            const isCollapsed = sidebarEl.classList.contains('lg:w-1/12');
+            if (!isCollapsed) {
+                resumeContainer.classList.toggle('hidden');
             }
-        }
-    });
+        });
+    }
+
+    // Validated section
+    if (validatedButton && validatedContainer) {
+        validatedButton.addEventListener('click', () => {
+            const isCollapsed = sidebarEl.classList.contains('lg:w-1/12');
+            if (!isCollapsed) {
+                validatedContainer.classList.toggle('hidden');
+            }
+        });
+    }
+
+    // Unvalidated section
+    if (unvalidatedButton && unvalidatedContainer) {
+        unvalidatedButton.addEventListener('click', () => {
+            const isCollapsed = sidebarEl.classList.contains('lg:w-1/12');
+            if (!isCollapsed) {
+                unvalidatedContainer.classList.toggle('hidden');
+            }
+        });
+    }
+
+    // Hamburger toggle
+    if (hamburgerButton && sidebarEl) {
+        hamburgerButton.addEventListener('click', () => {
+            const isMobile = window.innerWidth < 1024;
+            toggled = !toggled;
+
+            if (isMobile) {
+                sidebarEl.classList.toggle('hidden');
+            } else {
+                toggleSidebar(sidebarEl);
+                if (resumeContainer) resumeContainer.classList.add('hidden');
+                if (validatedContainer) validatedContainer.classList.add('hidden');
+                if (unvalidatedContainer) unvalidatedContainer.classList.add('hidden');
+            }
+
+            if (!isMobile) {
+                if (toggled) {
+                    sidebarEl.addEventListener('mouseenter', handleMouseEnter);
+                    sidebarEl.addEventListener('mouseleave', handleMouseLeave);
+                } else {
+                    sidebarEl.removeEventListener('mouseenter', handleMouseEnter);
+                    sidebarEl.removeEventListener('mouseleave', handleMouseLeave);
+                }
+            }
+        });
+    }
 
     function handleMouseEnter() {
         hoverSidebar(sidebarEl);
     }
-    
+
     function handleMouseLeave() {
         hoverSidebar(sidebarEl);
-        resumeContainer.classList.add('hidden');
+        if (resumeContainer) resumeContainer.classList.add('hidden');
+        if (validatedContainer) validatedContainer.classList.add('hidden');
+        if (unvalidatedContainer) unvalidatedContainer.classList.add('hidden');
     }
 
     function hoverSidebar(el) {
         const isCollapsed = el.classList.contains('lg:w-1/12');
-    
-        // Manually toggle classes based on state
+
         el.classList.toggle('lg:w-1/12', !isCollapsed);
         el.classList.toggle('lg:w-1/6', isCollapsed);
-    
+
         setTimeout(() => {
             document.querySelectorAll('.sideBarMenuLabel').forEach(el => {
                 el.classList.toggle('hidden', !isCollapsed);
             });
         }, 100);
-    
+
         document.querySelectorAll('.sideBarMenuAnchor').forEach(el => {
             el.classList.toggle('justify-center', !isCollapsed);
         });
-    
-        document.getElementById('logo-War').innerHTML = !isCollapsed ? "W" : "War";
-        document.getElementById('logo-Ja').innerHTML = !isCollapsed ? "J" : "Ja";
-    
-        hamburgerButton.classList.toggle('lg:ml-[18%]', isCollapsed); 
-        hamburgerButton.classList.toggle('lg:ml-[9%]', !isCollapsed);
+
+        const logoWar = document.getElementById('logo-War');
+        const logoJa = document.getElementById('logo-Ja');
+
+        if (logoWar && logoJa) {
+            logoWar.innerHTML = !isCollapsed ? "W" : "War";
+            logoJa.innerHTML = !isCollapsed ? "J" : "Ja";
+        }
+
+        if (hamburgerButton) {
+            hamburgerButton.classList.toggle('lg:ml-[18%]', isCollapsed); 
+            hamburgerButton.classList.toggle('lg:ml-[9%]', !isCollapsed);
+        }
     }
-    
 
     function toggleSidebar(el, forceCollapse = null) {
         const isCollapsed = forceCollapse !== null
@@ -92,10 +132,17 @@ document.addEventListener('DOMContentLoaded', () => {
             el.classList.toggle('justify-center', isCollapsed);
         });
 
-        document.getElementById('logo-War').innerHTML = isCollapsed ? "W" : "War";
-        document.getElementById('logo-Ja').innerHTML = isCollapsed ? "J" : "Ja";
+        const logoWar = document.getElementById('logo-War');
+        const logoJa = document.getElementById('logo-Ja');
 
-        hamburgerButton.classList.toggle('lg:ml-[18%]', !isCollapsed); 
-        hamburgerButton.classList.toggle('lg:ml-[9%]', isCollapsed);
+        if (logoWar && logoJa) {
+            logoWar.innerHTML = isCollapsed ? "W" : "War";
+            logoJa.innerHTML = isCollapsed ? "J" : "Ja";
+        }
+
+        if (hamburgerButton) {
+            hamburgerButton.classList.toggle('lg:ml-[18%]', !isCollapsed); 
+            hamburgerButton.classList.toggle('lg:ml-[9%]', isCollapsed);
+        }
     }
 });

@@ -39,9 +39,9 @@
                 <div class="w-full flex flex-col lg:flex-row items-center lg:items-end justify-between gap-2">
                     
                     <div class="w-full lg:w-1/2">
-                        <label for="pemrogramanBerbasisObyek" id="pemrogramanBerbasisObyekLabel" class="font-bold text-gray-400 block">Pemrograman Berbasis Obyek</label>
-                        <input name="pemrogramanBerbasisObyek" id="pemrogramanBerbasisObyek" type="number" step="0.01" class="bg-lightGray w-full text-darkGray py-2 pl-1 px-2 text-sm placeholder:text-gray-400 rounded-md" placeholder="80.00">
-                        <p id="pemrogramanBerbasisObyekErrorMessage" class="text-red-500 mt-1 text-xs"></p>
+                        <label for="pemrogramanBerorientasiObyek" id="pemrogramanBerorientasiObyekLabel" class="font-bold text-gray-400 block">Pemrograman Beroirentasi Obyek</label>
+                        <input name="pemrogramanBerorientasiObyek" id="pemrogramanBerorientasiObyek" type="number" step="0.01" class="bg-lightGray w-full text-darkGray py-2 pl-1 px-2 text-sm placeholder:text-gray-400 rounded-md" placeholder="80.00">
+                        <p id="pemrogramanBerorientasiObyekErrorMessage" class="text-red-500 mt-1 text-xs"></p>
                     </div>
                     
                     <div class="w-full lg:w-1/2">

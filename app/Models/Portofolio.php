@@ -22,4 +22,9 @@ class Portofolio extends Model
         'status',
         'action',
     ];
+
+    public function mahasiswa()
+    {
+        return $this->belongsTo(Mahasiswa::class, 'nim', 'nim');
+    }
 }

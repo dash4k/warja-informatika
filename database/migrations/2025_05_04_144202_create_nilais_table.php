@@ -34,13 +34,18 @@ return new class extends Migration
             $table->float('basis_data')->default(0);
             $table->float('desain_analisis_algoritma')->default(0);
             $table->float('rekayasa_perangkat_lunak')->default(0);
-            $table->float('pemrograman_berbasis_obyek')->default(0);
+            $table->float('pemrograman_berorientasi_obyek')->default(0);
             $table->float('komunikasi_data_jaringan_komputer')->default(0);
             $table->float('teori_bahasa_otomata')->default(0);
             $table->string('transkrip_sementara')->default('');
+            $table->boolean('validated')->default(false);
+            $table->timestamp('validated_at')->nullable()->default(null);
+            $table->unsignedBigInteger('id_admin')->nullable()->default(null);
+            $table->string('admin_notes')->nullable()->default(null);
             $table->timestamps();
 
             $table->foreign('id_nilai')->references('nim')->on('mahasiswas')->onDelete('cascade');
+            $table->foreign('id_admin')->references('id_admin')->on('admins')->onDelete('set null');
         });
     }
 

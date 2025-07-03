@@ -18,6 +18,10 @@ class Mahasiswa extends Model
         "nama",
         "kelas",
         "profile_picture",
+        "validated",
+        "validated_at",
+        "admin_notes",
+        "id_admin",
     ];
 
     public function progress()
@@ -28,5 +32,15 @@ class Mahasiswa extends Model
     public function jumlahPortofolio()
     {
         return $this->hasOne(JumlahPortofolio::class, 'nim', 'nim');
+    }
+
+    public function nilai()
+    {
+        return $this->hasOne(Nilai::class, 'id_nilai', 'nim');
+    }
+
+    public function portofolio()
+    {
+        return $this->hasMany(Portofolio::class, 'nim', 'nim');
     }
 }

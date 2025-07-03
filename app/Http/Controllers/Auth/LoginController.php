@@ -37,7 +37,15 @@ class LoginController extends Controller
             return back()->with('error', 'Invalid login details!');
         }
 
-        // Redirect logged in users to dashboard
-        return redirect()->route('dashboard');
+        $user = Auth::user();
+
+        if ($user->isAdmin()) {
+            return redirect()->route('admin.biodata.index');
+        } elseif ($user->isDosen()) {
+            return redirect()->route('/');
+        } else {
+            return redirect()->route('dashboard');
+        }
+
     }
 }

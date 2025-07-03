@@ -24,7 +24,21 @@
         </div>
         <!-- Penjaluran Button -->
         
-        <a @auth href="{{ route('dashboard') }}" @endauth @guest href="{{ route('register') }}" @endguest class="hidden md:block mr-5 p-1 px-4 text-sm bg-midBlue self-baseline rounded-md text-paperWhite font-poppins font-bold hover:bg-lightBlue">Mulai</a>
+        <a 
+            @auth 
+            @if (auth()->user()->isAdmin())
+                href="{{ route('admin.biodata.index') }}"
+            @elseif (auth()->user()->isDosen())
+                href="{{ route('/') }}"
+            @else
+                href="{{ route('dashboard') }}"
+            @endif 
+            @endauth
+             
+            @guest href="{{ route('register') }}" @endguest 
+            class="hidden md:block mr-5 p-1 px-4 text-sm bg-midBlue self-baseline rounded-md text-paperWhite font-poppins font-bold hover:bg-lightBlue">
+            Mulai
+        </a>
         
         {{-- Hamburger Button (mobile) --}}
         <div class="md:hidden">

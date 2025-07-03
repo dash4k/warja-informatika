@@ -1,6 +1,6 @@
-@php
+{{-- @php
     use App\Models\Nilai;
-@endphp
+@endphp --}}
 {{-- Side Bar --}}
 <aside id="sidebar" class="hidden sm:block lg:flex flex-col fixed top-18 lg:top-0 left-0 w-full lg:w-1/6 bg-white border-r-2 border-lightGray min-h-screen z-90 text-darkGray transition-all duration-300">
 
@@ -36,7 +36,7 @@
             <h1 class="text-xs sideBarMenuLabel">Biodata</h1>
         </a>
 
-        <button @if (auth()->user()->mahasiswa?->progress?->progress_umum < 1) disabled @endif id="resumeButton" class="@if (auth()->user()->mahasiswa?->progress?->progress_umum < 1) pointer-events-none text-gray-400 @endif p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('portofolio') || request()->routeIs('nilai') || request()->routeIs('nilai.index') || request()->routeIs('transkrip'))
+        <button @if (auth()->user()->mahasiswa?->progress?->progress_umum < 1) disabled @endif id="resumeButton" class="sideBarMenuAnchor @if (auth()->user()->mahasiswa?->progress?->progress_umum < 1) pointer-events-none text-gray-400 @endif p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('portofolio') || request()->routeIs('nilai') || request()->routeIs('nilai.index') || request()->routeIs('transkrip'))
                 bg-blue-50
                 text-blue-700
                 @else
@@ -45,7 +45,7 @@
             <i class="fa-solid fa-laptop-code"></i>
             <h1 class="text-xs sideBarMenuLabel">Resume</h1>
         </button>
-        <div id="resumeContainer" class="w-4/5 flex flex-col items-end justify-center gap-2 transition-all duration-300">
+        <div id="resumeContainer" class="w-4/5 flex flex-col items-end justify-center gap-2 transition-all duration-300 hidden">
                         
             {{-- Nilai --}}
             <a 

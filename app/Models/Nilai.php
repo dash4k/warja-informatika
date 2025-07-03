@@ -38,9 +38,14 @@ class Nilai extends Model
         'basis_data',
         'desain_analisis_algoritma',
         'rekayasa_perangkat_lunak',
-        'pemrograman_berbasis_obyek',
+        'pemrograman_berorientasi_obyek',
         'komunikasi_data_jaringan_komputer',
         'teori_bahasa_otomata',
         'transkrip_sementara',
     ];
+
+    public function mahasiswa()
+    {
+        return $this->belongsTo(Mahasiswa::class, 'id_nilai', 'nim');
+    }
 }

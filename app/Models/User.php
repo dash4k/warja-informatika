@@ -72,4 +72,9 @@ class User extends Authenticatable
     {
         return $this->admin()->exists();
     }
+
+    public function isDosen()
+    {
+        return $this->dosen()->exists();
+    }
 }

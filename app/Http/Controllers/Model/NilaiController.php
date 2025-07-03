@@ -123,7 +123,7 @@ class NilaiController extends Controller
                     'basisData' => $nilai->basis_data,
                     'desainAnalisisAlgoritma' => $nilai->desain_analisis_algoritma,
                     'rekayasaPerangkatLunak' => $nilai->rekayasa_perangkat_lunak,
-                    'pemrogramanBerbasisObyek' => $nilai->pemrograman_berbasis_obyek,
+                    'pemrogramanBerorientasiObyek' => $nilai->pemrograman_berorientasi_obyek,
                     'komunikasiDataJaringanKomputer' => $nilai->komunikasi_data_jaringan_komputer,
                     'teoriBahasaOtomata' => $nilai->teori_bahasa_otomata,
                 ];
@@ -169,7 +169,7 @@ class NilaiController extends Controller
                 'basisData' => 'required|decimal:0,4',
                 'desainAnalisisAlgoritma' => 'required|decimal:0,4',
                 'rekayasaPerangkatLunak' => 'required|decimal:0,4',
-                'pemrogramanBerbasisObyek' => 'required|decimal:0,4',
+                'pemrogramanBerorientasiObyek' => 'required|decimal:0,4',
                 'komunikasiDataJaringanKomputer' => 'required|decimal:0,4',
                 'teoriBahasaOtomata' => 'required|decimal:0,4',
             ];

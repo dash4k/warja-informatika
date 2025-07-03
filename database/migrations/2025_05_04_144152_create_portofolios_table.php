@@ -23,9 +23,14 @@ return new class extends Migration
             $table->enum('jalur', ['j1', 'j2', 'j3', 'j4', 'j5', 'j6', 'j7', 'j8', 'j9']);
             $table->enum('status', ['accepted', 'rejected', 'pending'])->default('pending');
             $table->enum('action', ['editable', 'locked'])->default('locked');
+            $table->boolean('validated')->default(false);
+            $table->timestamp('validated_at')->nullable()->default(null);
+            $table->unsignedBigInteger('id_admin')->nullable()->default(null);
+            $table->string('admin_notes')->nullable()->default(null);
             $table->timestamps();
 
             $table->foreign('nim')->references('nim')->on('mahasiswas')->onDelete('cascade');
+            $table->foreign('id_admin')->references('id_admin')->on('admins')->onDelete('set null');
         });
     }
 
