@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminNilaiController;
 use App\Http\Controllers\Admin\AdminBiodataController;
 use App\Http\Controllers\Admin\AdminPortofolioController;
+use App\Http\Controllers\Admin\AdminValidated;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -48,11 +49,15 @@ Route::put('/portofolio/{id}', [PortofolioController::class, 'update'])->middlew
 
 Route::get('/penjaluran', [PenjaluranController::class, 'index'])->name('penjaluran')->middleware('auth')->middleware(mahasiswaAuth::class)->middleware(ProgressMahasiswa::class);
 
-Route::resource('admin/biodata', AdminBiodataController::class)->names('admin.biodata')->middleware('auth')->middleware(adminAuth::class);
-Route::put('admin/biodata/validate/{id}', [AdminBiodataController::class, 'validate'])->name('admin.biodata.validate')->middleware('auth')->middleware(adminAuth::class);
+Route::resource('admin/unvalidated/biodata', AdminBiodataController::class)->names('admin.biodata')->middleware('auth')->middleware(adminAuth::class);
+Route::put('admin/unvalidated/biodata/validate/{id}', [AdminBiodataController::class, 'validate'])->name('admin.biodata.validate')->middleware('auth')->middleware(adminAuth::class);
 
-Route::resource('admin/nilai', AdminNilaiController::class)->names('admin.nilai')->middleware('auth')->middleware(adminAuth::class);
-Route::put('admin/nilai/validate/{id}', [AdminNilaiController::class, 'validate'])->name('admin.nilai.validate')->middleware('auth')->middleware(adminAuth::class);
+Route::resource('admin/unvalidated/nilai', AdminNilaiController::class)->names('admin.nilai')->middleware('auth')->middleware(adminAuth::class);
+Route::put('admin/unvalidated/nilai/validate/{id}', [AdminNilaiController::class, 'validate'])->name('admin.nilai.validate')->middleware('auth')->middleware(adminAuth::class);
 
-Route::resource('admin/portofolio', AdminPortofolioController::class)->names('admin.portofolio')->middleware('auth')->middleware(adminAuth::class);
-Route::put('admin/portofolio/validate/{id}', [AdminPortofolioController::class, 'validate'])->name('admin.portofolio.validate')->middleware('auth')->middleware(adminAuth::class);
+Route::resource('admin/unvalidated/portofolio', AdminPortofolioController::class)->names('admin.portofolio')->middleware('auth')->middleware(adminAuth::class);
+Route::put('admin/unvalidated/portofolio/validate/{id}', [AdminPortofolioController::class, 'validate'])->name('admin.portofolio.validate')->middleware('auth')->middleware(adminAuth::class);
+
+Route::get('admin/validated/biodata', [AdminValidated::class, 'biodata'])->name('admin.validated.biodata')->middleware('auth')->middleware(adminAuth::class);
+Route::get('admin/validated/nilai', [AdminValidated::class, 'nilai'])->name('admin.validated.nilai')->middleware('auth')->middleware(adminAuth::class);
+Route::get('admin/validated/portofolio', [AdminValidated::class, 'portofolio'])->name('admin.validated.portofolio')->middleware('auth')->middleware(adminAuth::class);

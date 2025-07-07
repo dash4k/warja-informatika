@@ -1,4 +1,4 @@
-<x-admin-dashboard title="Unvalidated Nilai">
+<x-admin-dashboard title="Validated Nilai">
     <section class="lg:right-[2.7%] mt-25 lg:ml-[20%] lg:mt-20 lg:w-7/9 min-h-screen lg:h-[75dvh] w-5/6 max-w-[86%] mx-auto rounded-sm mainMainContentDashboard transition-all duration-300 flex flex-col gap-5" enctype="multipart/form-data">
         <h1 class="font-poppins text-lg lg:text-xl font-bold">Nilai Mahasiswa</h1>
 
@@ -9,9 +9,6 @@
                         <th class="border px-4 py-2">NIM</th>
                         <th class="border px-4 py-2">Nama</th>
                         <th class="border px-4 py-2">Nilai</th>
-                        {{-- <th class="border px-4 py-2">Transkrip</th> --}}
-                        <th class="border px-4 py-2">Notes</th>
-                        <th class="border px-4 py-2">Validate</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,42 +45,6 @@
                             <td class="border px-4 py-2 break-words max-w-[200px] capitalize">{{ $n->mahasiswa->nama }}</td>
                             <td class="border px-4 py-2 break-words max-w-[250px] capitalize">
                                 <button type="button" class="showNilai bg-snowWhite hover:bg-black hover:text-snowWhite px-2 py-1 rounded hover:cursor-pointer transition-all duration-100" title="Nilai"><i class="fa-solid fa-graduation-cap"></i></button>
-                            </td>
-                            {{-- <td class="border px-4 py-2">
-                                <a href="{{ asset('storage/' . $n->transkrip_sementara) }}" target="_blank" class="text-darkBlue hover:text-lightBlue hover:cursor-pointer transition-all duration-100" title="Transkrip"><i class="fa-solid fa-link"></i></a>
-                            </td> --}}
-                            <td class="border px-4 py-2">
-                                <form action="{{ route('admin.nilai.update', $n->id_nilai) }}" method="POST" class="hidden">
-                                    @csrf
-                                    @method('PUT')
-
-                                    <textarea 
-                                        name="pesan"
-                                        class="auto-resize w-full resize-none overflow-hidden bg-transparent border-none outline-none text-sm focus:ring-1 focus:ring-darkBlue p-2 overflow-y-auto"
-                                        disabled
-                                        oninput="autoResize(this)"
-                                    >{{ $n->admin_notes }}</textarea>
-
-                                    <div class="flex justify-end gap-1 items-center p-1">
-                                        <button type="button" class="cancelEditButton bg-red-300 text-white text-sm px-4 py-1 rounded hover:bg-red-100 hover:text-black hover:cursor-pointer transition-all duration-100">
-                                            <i class="fa-solid fa-xmark"></i>
-                                        </button>
-                                        <button type="submit" class="bg-midBlue text-white text-sm px-4 py-1 rounded hover:bg-lightBlue hover:text-black hover:cursor-pointer transition-all duration-100">
-                                            <i class="fa-solid fa-paper-plane"></i>
-                                        </button>
-                                    </div>
-                                </form>
-
-                                <button type="button" class="editButton bg-yellow-300 text-black hover:text-yellow-300 hover:bg-black px-2 py-1 rounded hover:cursor-pointer transition-all duration-100" title="Catatan"><i class="fa-solid fa-pen-to-square"></i></button>
-                            </td>
-                            <td class="border px-4 py-2">
-                                <form action="{{ route('admin.nilai.validate', $n->id_nilai) }}" method="POST">
-                                    @csrf
-                                    @method('PUT')
-                                    <button type="submit" class="validateButton bg-midBlue hover:bg-lightBlue text-white hover:text-black px-2 py-1 rounded hover:cursor-pointer transition-all duration-100">
-                                        <i class="fa-solid fa-check"></i>
-                                    </button>
-                                </form>
                             </td>
                         </tr>
                     @empty
@@ -231,6 +192,9 @@
                 </div>
             </div>
         </div> 
+        <div class="mt-4">
+            {{ $nilais->links() }}
+        </div>
     </section>
     @push('scripts')
         @vite('resources/js/adminNilai.js')
