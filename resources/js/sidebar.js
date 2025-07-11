@@ -6,8 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const validatedContainer = document.getElementById('validatedContainer');
     const unvalidatedButton = document.getElementById('unvalidatedButton');
     const unvalidatedContainer = document.getElementById('unvalidatedContainer');
-    const penjaluranButton = document.getElementById('penjaluranButton');
-    const penjaluranContainer = document.getElementById('penjaluranContainer');
     const sidebarEl = document.getElementById('sidebar');
     let toggled = false;
 
@@ -37,15 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const isCollapsed = sidebarEl.classList.contains('lg:w-1/12');
             if (!isCollapsed) {
                 unvalidatedContainer.classList.toggle('hidden');
-            }
-        });
-    }
-   
-    if (penjaluranButton && penjaluranContainer) {
-        penjaluranButton.addEventListener('click', () => {
-            const isCollapsed = sidebarEl.classList.contains('lg:w-1/12');
-            if (!isCollapsed) {
-                penjaluranContainer.classList.toggle('hidden');
             }
         });
     }

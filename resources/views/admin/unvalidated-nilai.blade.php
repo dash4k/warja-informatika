@@ -188,7 +188,7 @@
                         </table>
 
                         <table class="table-auto w-full p-1 text-center text-sm break-words">
-                            <caption class="text-left font-black mb-2">Semester 3</caption>
+                            <caption class="text-left font-black mb-2">Semester 1</caption>
                             <thead>
                                 <tr>
                                     <th class="font-bold text-center border px-1 py-1">Mata Kuliah</th>
