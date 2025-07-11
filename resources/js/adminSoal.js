@@ -278,7 +278,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('click', (e) => {
     if (e.target.closest('.editButton')) {
-        console.log("Edit button clicked!");
 
         clearSoalForm(); 
 

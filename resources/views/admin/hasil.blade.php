@@ -6,10 +6,10 @@
             <div class="container mx-auto p-4">
             @foreach ($assignmentsByJalur as $jalur => $mahasiswaList)
                 <div class="mb-8">
-                    <h2 class="text-xl font-semibold mb-3 uppercase">Jalur {{ strtoupper($jalur) }}</h2>
+                    <h2 class="text-xl font-semibold mb-3 titlecase">Jalur {{ strtoupper($jalur) }}</h2>
                     <div class="overflow-x-auto">
                         <table class="table-auto w-full border border-gray-300">
-                            <thead class="bg-gray-100">
+                            <thead class="bg-blue-100">
                                 <tr>
                                     <th class="px-4 py-2 border">No</th>
                                     <th class="px-4 py-2 border">NIM</th>

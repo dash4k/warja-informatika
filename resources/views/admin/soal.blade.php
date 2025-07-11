@@ -57,7 +57,7 @@
 
         <!-- Modal -->
         <div id="previewModal" class="fixed inset-0 bg-blue-200/30 backdrop-blur-sm z-100 flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300 ease-out w-full h-full pl-5 pr-5 lg:pl-0 lg:pr-0">
-            <div class="bg-white p-6 rounded max-w-5xl w-full max-h-[calc(100vh-4rem)]">
+            <div class="bg-white p-6 rounded max-w-5xl w-full h-auto">
                 <div class="flex flex-row justify-end items-center">
                     <button type="button" id="closeModal" class="rounded-full bg-red-300 text-white text-sm px-2 pt-1 hover:bg-red-100 hover:text-black hover:cursor-pointer transition-all duration-100">
                         <i class="fa-solid fa-xmark"></i>
