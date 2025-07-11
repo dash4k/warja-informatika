@@ -88,6 +88,8 @@ class AdminPortofolioController extends Controller
             return redirect()->back()->with('error', 'Portofolio not found');
         }
 
+        $portofolio->action = 'locked';
+        $portofolio->admin_notes = null;
         $portofolio->validated = true;
         $portofolio->validated_at = now();
         $portofolio->id_admin = Auth::user()->id_user;

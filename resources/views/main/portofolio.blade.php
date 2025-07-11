@@ -18,6 +18,7 @@
                         <th class="border px-4 py-2">Bobot</th>
                         <th class="border px-4 py-2">Jalur</th>
                         <th class="border px-4 py-2">Status</th>
+                        <th class="border px-4 py-2">Admin's Notes</th>
                         <th class="border px-4 py-2">Action</th>
                     </tr>
                 </thead>
@@ -40,16 +41,16 @@
                             </td>
                             <td class="border px-4 py-2">{{ $p->bobot }}</td>
                             <td class="border px-4 py-2 capitalize">{{ $p->jalur }}</td>
-                            @switch($p->status)
-                                @case('accepted')
-                                    <td class="border px-4 py-2"><i class="fa-solid fa-circle-check text-lg" title="Accepted"></i></td>
-                                    @break
-                                @case('rejected')
-                                    <td class="border px-4 py-2"><i class="fa-solid fa-circle-xmark text-lg" title="Rejected"></i></td>
-                                    @break
-                                @default
-                                    <td class="border px-4 py-2"><i class="fa-solid fa-clock text-lg" title="Pending"></i></td>
-                            @endswitch
+                            @if ($p->validated)
+                                <td class="border px-4 py-2"><i class="fa-solid fa-circle-check text-lg" title="Accepted"></i></td>
+                            @else
+                                <td class="border px-4 py-2"><i class="fa-solid fa-clock text-lg" title="Pending"></i></td>
+                            @endif
+                            @if ($p->admin_notes)
+                                <td class="border px-4 py-2">{{ $p->admin_notes }}</td>
+                            @else
+                                <td class="border px-4 py-2">-</td>
+                            @endif
                             @switch($p->action)
                                 @case('editable')
                                     <td class="border px-4 py-2"><button type="button" class="editButton bg-yellow-300 hover:bg-yellow-200 px-2 py-1 rounded hover:cursor-pointer" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button></td>
@@ -61,7 +62,7 @@
                             </tr>
                     @empty
                         <tr>
-                            <td colspan="7" class="text-center py-4">Belum ada portofolio</td>
+                            <td colspan="9" class="text-center py-4">Belum ada portofolio</td>
                         </tr>
                     @endforelse
                 </tbody>

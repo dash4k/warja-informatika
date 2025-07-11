@@ -19,9 +19,14 @@
                             <td class="border px-4 py-2 break-words max-w-[200px] capitalize">{{ $b->nama }}</td>
                             <td class="border px-4 py-2 break-words max-w-[250px] capitalize">{{ $b->kelas }}</td>
                             <td class="border px-4 py-2 flex flex-row justify-center items-center">
-                                <div class="aspect-[3/4] w-30 lg:w-30 border-4 border-lightGray bg-darkGray">
-                                    <img src="{{ asset('storage/' . $b->profile_picture) }}" alt="Profile Picture" class="w-fit h-full object-cover" id="profilePreview">
-                                </div>         
+                                <div class="relative w-24 sm:w-28 aspect-[3/4] border-4 border-lightGray bg-darkGray overflow-hidden rounded-md">
+                                    <img 
+                                        src="{{ asset('storage/' . $b->profile_picture) }}" 
+                                        alt="Profile Picture" 
+                                        class="absolute inset-0 w-full h-full object-cover" 
+                                        loading="lazy"
+                                    >
+                                </div>
                             </td>
                         </tr>
                     @empty

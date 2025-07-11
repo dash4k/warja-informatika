@@ -84,7 +84,6 @@ class UserSeeder extends Seeder
                         'bukti' => 'bukti_sertifikat_mahasiswa/F8oRNPRooP3WT7Z4hMl7R6FYnkRoTORnRUDRwWbI.pdf',
                         'bobot' => 1,
                         'jalur' => 'J' . $j,
-                        'status' => 'pending',
                         'action' => 'locked',
                         'created_at' => now(),
                         'updated_at' => now(),

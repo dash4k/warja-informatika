@@ -36,28 +36,31 @@
                         </button>
                     </div>
                     <div class="flex flex-col p-1 mb-2 font-black">
-                        <p>Id Portofolio. <span id="idPortofolio"></span></p>
+                        <p>NIM. <span id="nim"></span></p>
                     </div>
-                    <div class="flex flex-row justify-between items-start w-full gap-5 mb-2">
+                    <div class="flex flex-row justify-between items-start w-full gap-5 mb-2 max-h-[400px] overflow-y-auto">
                         <table class="table-auto w-full p-1 text-center text-sm break-words">
-                            <thead class="bg-blue-200">
+                            <thead class="bg-blue-200 sticky top-0 z-10">
                                 <tr>
-                                    <th class="font-bold text-center border px-1 py-1">Nama</th>
-                                    <th class="font-bold text-center border px-1 py-1">Tanggal</th>
-                                    <th class="font-bold text-center border px-1 py-1">Tempat</th>
-                                    <th class="font-bold text-center border px-1 py-1">Bobot</th>
-                                    <th class="font-bold text-center border px-1 py-1">Jalur</th>
-                                    <th class="font-bold text-center border px-1 py-1">Sertifikat</th>
+                                    <th class="border font-bold text-center px-1 py-1">Nama</th>
+                                    <th class="border font-bold text-center px-1 py-1">Tanggal</th>
+                                    <th class="border font-bold text-center px-1 py-1">Tempat</th>
+                                    <th class="border font-bold text-center px-1 py-1">Bobot</th>
+                                    <th class="border font-bold text-center px-1 py-1">Jalur</th>
+                                    <th class="border font-bold text-center px-1 py-1">Sertifikat</th>
                                 </tr>
                             </thead>
                             <tbody id="portofolioList">
-
+                                
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div> 
+        <div class="mt-4">
+            {{ $mahasiswas->links() }}
+        </div>
     </section>
     @push('scripts')
         @vite('resources/js/adminValidatedPortofolio.js')
@@ -78,6 +81,7 @@
                     'bobot'          => $p->bobot,
                     'jalur'          => $p->jalur,
                     'sertifikat_url' => asset('storage/' . $p->bukti),
+                    'nim' => $p->nim,
                 ];
             })->values()->all() ]; 
         })->all();

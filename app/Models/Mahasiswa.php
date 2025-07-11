@@ -43,4 +43,19 @@ class Mahasiswa extends Model
     {
         return $this->hasMany(Portofolio::class, 'nim', 'nim');
     }
+
+    public function ujianMahasiswa()
+    {
+        return $this->hasOne(UjianMahasiswa::class, 'nim', 'nim');
+    }
+
+    public function survey()
+    {
+        return $this->hasOne(SurveyJalur::class, 'nim', 'nim');
+    }
+
+    public function hasilPenjaluran()
+    {
+        return $this->hasOne(HasilPenjaluran::class, 'nim', 'nim');
+    }
 }

@@ -87,6 +87,7 @@ class AdminNilaiController extends Controller
             return redirect()->back()->with('error', 'Nilai not found');
         }
 
+        $nilai->admin_notes = null;
         $nilai->validated = true;
         $nilai->validated_at = now();
         $nilai->id_admin = Auth::user()->id_user;

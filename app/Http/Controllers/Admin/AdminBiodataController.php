@@ -88,6 +88,7 @@ class AdminBiodataController extends Controller
             return redirect()->back()->with('error', 'Mahasiswa not found');
         }
 
+        $mahasiswa->admin_notes = null;
         $mahasiswa->validated = true;
         $mahasiswa->validated_at = now();
         $mahasiswa->id_admin = Auth::user()->id_user;

@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
         // Call your custom user seeder here
         $this->call([
             UserSeeder::class,
+            JalurSeeder::class,
         ]);
     }
 }
