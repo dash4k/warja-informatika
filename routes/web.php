@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Admin\AdminNilaiController;
 use App\Http\Controllers\Admin\AdminBiodataController;
+use App\Http\Controllers\Admin\AdminPenjaluranController;
 use App\Http\Controllers\Admin\AdminPortofolioController;
+use App\Http\Controllers\Admin\AdminProsesPenjaluranController;
 use App\Http\Controllers\Admin\AdminSoalController;
 use App\Http\Controllers\Admin\AdminUjianController;
 use App\Http\Controllers\Admin\AdminValidated;
@@ -82,3 +84,6 @@ Route::resource('admin/soal', AdminSoalController::class)->names('admin.soal')->
 
 Route::resource('admin/ujian', AdminUjianController::class)->names('admin.ujian')->middleware('auth')->middleware(adminAuth::class);
 Route::delete('admin/ujianMahasiswa/{id}', [AdminUjianController::class, 'deleteMahasiswa'])->name('admin.ujianMahasiswa.destroy')->middleware('auth')->middleware(adminAuth::class);
+
+Route::resource('admin/penjaluran', AdminPenjaluranController::class)->names('admin.penjaluran')->middleware('auth')->middleware(adminAuth::class);
+Route::get('admin/hasil', [AdminProsesPenjaluranController::class, 'proses'])->name('admin.hasil')->middleware('auth')->middleware(adminAuth::class);
