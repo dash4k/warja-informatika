@@ -1,5 +1,5 @@
 <!-- Footer -->
-<footer class="relative z-50 bg-midBlue flex flex-col md:flex-row justify-between pl-10 pt-7 pb-15 gap-5 md:pr-10">
+<footer class="relative z-50 bg-black flex flex-col md:flex-row justify-between pl-10 pt-7 pb-15 gap-5 md:pr-10">
 
     {{-- Warja name --}}
     <h2 class="w-1/2 md:w-1/6 text-lightGray font-medium font-oswald text-sm">Wadah Analisis dan Rekomendasi Penjaluran Akademik</h2>
@@ -8,7 +8,7 @@
     <div class="flex flex-col gap-2 text-xs">
         <h2 class="font-oswald font-medium text-lightGray">Contact</h2>
         <ul>
-            <li>HIMAIF</li>
+            <li class="text-lightGray">HIMAIF</li>
         </ul>
     </div>
 
@@ -16,8 +16,8 @@
     <div class="flex flex-col gap-2 text-xs">
         <h2 class="font-oswald font-medium text-lightGray">Stuff</h2>
         <ul>
-            <li>About</li>
-            <li>Publications</li>
+            <li class="text-lightGray">About</li>
+            <li class="text-lightGray">Publications</li>
         </ul>
     </div>
 
@@ -25,8 +25,8 @@
     <div class="flex flex-col gap-2 text-xs">
         <h2 class="font-oswald font-medium text-lightGray">More Stuff</h2>
         <ul>
-            <li>Privacy Policy</li>
-            <li>Legal</li>
+            <li class="text-lightGray">Privacy Policy</li>
+            <li class="text-lightGray">Legal</li>
         </ul>
     </div>
 

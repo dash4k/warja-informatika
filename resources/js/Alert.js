@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'Whoops...',
             html: errorMessages,
             icon: 'error',
-            showConfirmButton: false,
-            timer: 1000,
+            confirmButtonText: '  OK  ',
+            confirmButtonColor: '#2176ff',
         });
     }
     
@@ -18,8 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
             icon: 'success',
             title: 'Berhasil',
             text: window.laravelSuccess,
-            showConfirmButton: false,
-            timer: 1000,
         });
     }
 });

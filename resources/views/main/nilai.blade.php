@@ -236,42 +236,7 @@
         @else
             <p class="text-white text-center p-4">No PDF available</p>
         @endif
-
     </div>  
-    
-    @if ($nilai && ($nilai->admin_notes != null || $nilai->validated))
-        <div class="flex flex-col items-start bg-white w-full p-4 rounded-2xl h-auto border-2 border-lightGray mb-2 gap-5">
-            @if ($nilai && $nilai->admin_notes != null)
-                <div class="flex w-full border rounded-lg overflow-hidden mb-2">
-                    <label class="font-bold bg-yellow-300 text-black p-2 flex items-center justify-center whitespace-nowrap">
-                        Admin's Note
-                    </label>
-                    <p class="p-2 grow">
-                        {{ $nilai->admin_notes }}
-                    </p>
-                </div>
-            @elseif ($nilai && $nilai->validated)
-                <div class="flex justify-between w-full rounded-lg">
-                    <div class="flex w-auto overflow-hidden mb-2">
-                        <label class="font-bold text-black p-2 flex items-center justify-center whitespace-nowrap">
-                            Validated at:
-                        </label>
-                        <p class="p-2">
-                            {{ $nilai->validated_at }}
-                        </p>
-                    </div>
-                    <div class="flex w-auto border rounded-lg overflow-hidden mb-2">
-                        <label class="font-bold bg-yellow-300 text-black p-2 flex items-center justify-center whitespace-nowrap">
-                            Validated by:
-                        </label>
-                        <p class="p-2">
-                            {{ $nilai->id_admin }}
-                        </p>
-                    </div>
-                </div>
-            @endif
-        </div>
-    @endif
     </section>
     @push('scripts')
         @vite('resources/js/Alert.js')
