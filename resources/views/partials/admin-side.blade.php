@@ -126,5 +126,68 @@
                 <h1 class="text-xs sideBarMenuLabel">Portofolio</h1>
             </a>
         </div>
+        
+        <button id="penjaluranButton" class="sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if(request()->routeIs('admin.soal.index') || request()->routeIs('admin.ujian.index') || request()->routeIs('admin.penjaluran.index'))
+                bg-blue-50
+                text-blue-700
+                @else
+                hover:bg-lightGray
+            @endif">
+            <i class="fa-solid fa-rocket"></i>
+            <h1 class="text-xs sideBarMenuLabel">Penjaluran</h1>
+        </button>
+        <div id="penjaluranContainer" class="w-4/5 flex flex-col items-end justify-center gap-2 transition-all duration-300 hidden">
+                        
+            {{-- Soal --}}
+            <a 
+            href="{{ route('admin.soal.index') }}"
+            class="sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('admin.soal.index'))
+                bg-blue-50
+                text-blue-700
+                @else
+                hover:bg-lightGray
+            @endif">
+                <i class="fa-solid fa-clipboard-question"></i>
+                <h1 class="text-xs sideBarMenuLabel">Soal</h1>
+            </a>
+                        
+            {{-- Ujian --}}
+            <a 
+            href="{{ route('admin.ujian.index') }}"
+            class="sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs())
+                bg-blue-50
+                text-blue-700
+                @else
+                hover:bg-lightGray
+            @endif">
+                <i class="fa-solid fa-user-graduate"></i>
+                <h1 class="text-xs sideBarMenuLabel">Ujian</h1>
+            </a>
+                        
+            {{-- Hasil --}}
+            <a 
+            href="{{ route('admin.penjaluran.index') }}"
+            class="sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('admin.penjaluran.index'))
+                bg-blue-50
+                text-blue-700
+                @else
+                hover:bg-lightGray
+            @endif">
+                <i class="fa-brands fa-web-awesome"></i>
+                <h1 class="text-xs sideBarMenuLabel">Penjaluran</h1>
+            </a>
+            
+            <a 
+            href="{{ route('admin.hasil') }}"
+            class="sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('admin.hasil'))
+                bg-blue-50
+                text-blue-700
+                @else
+                hover:bg-lightGray
+            @endif">
+                <i class="fa-solid fa-award"></i>
+                <h1 class="text-xs sideBarMenuLabel">Hasil</h1>
+            </a>
+        </div>
     </div>
 </aside>
