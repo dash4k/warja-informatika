@@ -89,7 +89,7 @@
                         
             {{-- Biodata --}}
             <a 
-            href=""
+            href="{{ route('admin.validated.biodata') }}"
             class="sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('admin.validated.biodata'))
                 bg-blue-50
                 text-blue-700
@@ -102,7 +102,7 @@
                         
             {{-- Nilai --}}
             <a 
-            href=""
+            href="{{ route('admin.validated.nilai') }}"
             class="sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('admin.validated.nilai'))
                 bg-blue-50
                 text-blue-700
@@ -115,7 +115,7 @@
                         
             {{-- Portofolio --}}
             <a 
-            href=""
+            href="{{ route('admin.validated.portofolio') }}"
             class="sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('admin.validated.portofolio'))
                 bg-blue-50
                 text-blue-700
