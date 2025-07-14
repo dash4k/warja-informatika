@@ -7,7 +7,7 @@ export default defineConfig({
         host: '0.0.0.0',
         strictPort: true,
         hmr: {
-            host: '192.168.1.8',
+            host: '192.168.1.20',
         },
     },
     plugins: [
