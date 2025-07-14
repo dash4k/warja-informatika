@@ -22,7 +22,6 @@
                             <tr class="soalRow"
                                 data-jalur="{{ $jalur }}"
                                 data-soals='@json($surveysPerJalur[$jalur] ?? [])'
-                                data-delete-url="{{ route('admin.penjaluran.destroy', '__id__') }}"
                             >
                                 <td class="border px-4 py-2 bg-blue-100 text-left">{{ $jalur }}</td>
                                 <td class="border px-4 py-2">{{ $jumlahPerJalur[$jalur] ?? 0 }}</td>

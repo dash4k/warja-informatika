@@ -94,7 +94,7 @@
             href=""
         @else
             href="{{ route('penjaluran.redirect') }}"
-        @endif class="@if (auth()->user()->mahasiswa?->progress?->progress_umum < 2) pointer-events-none text-gray-400 @endif sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('penjaluran'))
+        @endif class="@if (auth()->user()->mahasiswa?->progress?->progress_umum < 2) pointer-events-none text-gray-400 @endif sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('penjaluran.*') || request()->routeIs('penjaluran'))
             bg-blue-50
             text-blue-700
             @else

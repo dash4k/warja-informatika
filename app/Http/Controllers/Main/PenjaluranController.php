@@ -18,7 +18,10 @@ class PenjaluranController extends Controller
     // View method
     public function index()
     {
-        return view('main.penjaluran');
+        $hasil = HasilPenjaluran::with('mahasiswa', 'jalur')
+            ->where('nim', Auth::user()->id_user)
+            ->first();
+        return view('main.penjaluran', compact('hasil'));
     }
 
     public function unvalidated()
@@ -115,7 +118,7 @@ class PenjaluranController extends Controller
             }
         }
 
-        return redirect()->route('penjaluran.waiting');
+        return redirect()->route('penjaluran');
     }
 
     public function startExam()
