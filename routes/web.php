@@ -42,7 +42,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 Route::get('/biodata', [MahasiswaController::class, 'index'])->name('biodata')->middleware('auth')->middleware(mahasiswaAuth::class);
 Route::post('/biodata', [MahasiswaController::class, 'store'])->middleware('auth')->middleware(mahasiswaAuth::class);
-Route::put('/biodata/{id}', [MahasiswaController::class, 'update'])->middleware('auth')->middleware(mahasiswaAuth::class);
+Route::put('/biodata/{id}', [MahasiswaController::class, 'update'])->name('biodata.update')->middleware('auth')->middleware(mahasiswaAuth::class);
 
 Route::get('/nilai/semester{semester}', [NilaiController::class, 'show'])->name('nilai')->middleware('auth')->middleware(mahasiswaAuth::class)->middleware(ProgressNilai::class)->middleware(ProgressMahasiswa::class);
 Route::get('/nilai', [NilaiController::class, 'index'])->name('nilai.index')->middleware('auth')->middleware(mahasiswaAuth::class)->middleware(ProgressNilai::class)->middleware(ProgressMahasiswa::class);
