@@ -13,8 +13,8 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     protected $primaryKey = 'id_user';
-    public $incrementing = true;
-    protected $keyType = 'int'; // because it's a bigInt in DB
+    public $incrementing = false;
+    protected $keyType = 'int';
 
     public function getAuthIdentifierName()
     {
