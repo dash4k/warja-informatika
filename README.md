@@ -49,7 +49,11 @@
    ```sh
    php artisan migrate
    ```
-7. Run the Servers
+7. Create link between public/storage and storage/app/public 
+   ```sh
+   php artisan storage:link
+   ```
+8. Run the Servers
    ```sh
    php artisan serve
    ```
