@@ -70,9 +70,9 @@
                 </tbody>
             </table>
             <div id="profileContainer" class="fixed inset-0 bg-blue-200/30 backdrop-blur-sm z-100 flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300 ease-out w-full h-full pl-5 pr-5">
-                <div class="p-6 rounded h-full w-full transform transition-all duration-300 ease-in-out">
+                <div class="p-3 pb-6 rounded h-auto w-auto bg-gray-600 transform transition-all duration-300 ease-in-out">
                     <div class="flex flex-col justify-start items-end">
-                        <button type="button" id="closeProfile" class="rounded-full bg-red-300 text-white text-sm px-2 pt-1 hover:bg-red-100 hover:text-black hover:cursor-pointer transition-all duration-100">
+                        <button type="button" id="closeProfile" class="ml-50 rounded-full bg-red-300 text-white text-sm px-2 pt-1 hover:bg-red-100 hover:text-black hover:cursor-pointer transition-all duration-100">
                             <i class="fa-solid fa-xmark"></i>
                         </button>
                     </div>

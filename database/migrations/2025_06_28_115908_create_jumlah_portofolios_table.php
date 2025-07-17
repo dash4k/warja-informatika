@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('jumlah_portofolios', function (Blueprint $table) {
-            $table->id('nim');
+            $table->string('nim')->primary();
             $table->integer('j1')->default(0);
             $table->integer('j2')->default(0);
             $table->integer('j3')->default(0);

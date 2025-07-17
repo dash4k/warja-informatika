@@ -4,7 +4,7 @@
         
         <div class="rounded-2xl p-4 bg-white w-full h-fit border-x-2 border-y-3 py-6 border-lightGray flex flex-col gap-5 justify-between items-center">
             <h2 class="font-roboto text-lg lg:text-xl font-black text-white bg-midBlue p-2 px-4">PENGUMUMAN</h2>
-            <p class="font-roboto w-1/2 text-center">Harap bersabar, penjaluran akan segera dilaksanakan setelah Admin Warja selesai mempersiapkan ujian penjaluran. Silahkan menunggu, terima kasih!</p>
+            <p class="font-roboto w-1/2 text-center">Harap bersabar, penjaluran akan segera dilanjutkan setelah Admin Warja selesai mempersiapkan penjaluran. Silahkan menunggu, terima kasih!</p>
         </div> 
     </section>
     @push('scripts')

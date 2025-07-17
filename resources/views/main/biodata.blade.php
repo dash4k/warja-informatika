@@ -7,9 +7,44 @@
         @if ($mahasiswa)
             @method('put')
         @endif
+
+        @if ($mahasiswa && ($mahasiswa->admin_notes != null || $mahasiswa->validated))
+        <h1 class="font-poppins text-lg lg:text-xl font-bold">Validation</h1>
+            <div class="flex flex-col items-start bg-white w-full p-4 rounded-2xl h-auto border-2 border-lightGray mb-2 gap-5">
+                @if ($mahasiswa && $mahasiswa->admin_notes != null)
+                    <div class="flex w-full border rounded-lg overflow-hidden mb-2">
+                        <label class="font-bold bg-yellow-300 text-black p-2 flex items-center justify-center whitespace-nowrap">
+                            Admin's Note
+                        </label>
+                        <p class="p-2 grow">
+                            {{ $mahasiswa->admin_notes }}
+                        </p>
+                    </div>
+                @elseif ($mahasiswa && $mahasiswa->validated)
+                    <div class="flex justify-between w-full rounded-lg">
+                        <div class="flex w-auto overflow-hidden mb-2">
+                            <label class="font-bold text-black p-2 flex items-center justify-center whitespace-nowrap">
+                                Validated at:
+                            </label>
+                            <p class="p-2">
+                                {{ $mahasiswa->validated_at }}
+                            </p>
+                        </div>
+                        <div class="flex w-auto border rounded-lg overflow-hidden mb-2">
+                            <label class="font-bold bg-yellow-300 text-black p-2 flex items-center justify-center whitespace-nowrap">
+                                Validated by:
+                            </label>
+                            <p class="p-2">
+                                {{ $mahasiswa->id_admin }}
+                            </p>
+                        </div>
+                    </div>
+                @endif
+            </div>
+        @endif
+        
         {{-- Biodata header --}}
         <h1 class="font-poppins text-lg lg:text-xl font-bold">Biodata Mahasiswa</h1>
-        
         {{-- Biodata main container --}}
         <div class="mb-2">
 
@@ -91,40 +126,6 @@
 
             </div> 
         </div>
-
-        @if ($mahasiswa && ($mahasiswa->admin_notes != null || $mahasiswa->validated))
-            <div class="flex flex-col items-start bg-white w-full p-4 rounded-2xl h-auto border-2 border-lightGray mb-2 gap-5">
-                @if ($mahasiswa && $mahasiswa->admin_notes != null)
-                    <div class="flex w-full border rounded-lg overflow-hidden mb-2">
-                        <label class="font-bold bg-yellow-300 text-black p-2 flex items-center justify-center whitespace-nowrap">
-                            Admin's Note
-                        </label>
-                        <p class="p-2 grow">
-                            {{ $mahasiswa->admin_notes }}
-                        </p>
-                    </div>
-                @elseif ($mahasiswa && $mahasiswa->validated)
-                    <div class="flex justify-between w-full rounded-lg">
-                        <div class="flex w-auto overflow-hidden mb-2">
-                            <label class="font-bold text-black p-2 flex items-center justify-center whitespace-nowrap">
-                                Validated at:
-                            </label>
-                            <p class="p-2">
-                                {{ $mahasiswa->validated_at }}
-                            </p>
-                        </div>
-                        <div class="flex w-auto border rounded-lg overflow-hidden mb-2">
-                            <label class="font-bold bg-yellow-300 text-black p-2 flex items-center justify-center whitespace-nowrap">
-                                Validated by:
-                            </label>
-                            <p class="p-2">
-                                {{ $mahasiswa->id_admin }}
-                            </p>
-                        </div>
-                    </div>
-                @endif
-            </div>
-        @endif
     </form>
     @push('scripts')
         @vite('resources/js/biodata.js')

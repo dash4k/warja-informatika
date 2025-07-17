@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('ujian_mahasiswas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('nim');
+            $table->string('nim');
             $table->unsignedBigInteger('id_ujian');
             $table->timestamp('waktu_mulai')->nullable()->default(null);
             $table->timestamp('waktu_selesai')->nullable()->default(null);

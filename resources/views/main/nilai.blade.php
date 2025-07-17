@@ -1,6 +1,42 @@
 <x-dashboard-layout title="Nilai — Warja">
     <section class="lg:right-[2.7%] mt-25 lg:ml-[20%] lg:mt-20 lg:w-7/9 min-h-screen w-5/6 max-w-[86%] mx-auto rounded-sm mainMainContentDashboard transition-all duration-300 flex flex-col gap-5" enctype="multipart/form-data">
+        @if ($nilai && ($nilai->admin_notes != null || $nilai->validated))
+        <h1 class="font-poppins text-lg lg:text-xl font-bold">Validation</h1>
+            <div class="flex flex-col items-start bg-white w-full p-4 rounded-2xl h-auto border-2 border-lightGray mb-2 gap-5">
+                @if ($nilai && $nilai->admin_notes != null)
+                    <div class="flex w-full border rounded-lg overflow-hidden mb-2">
+                        <label class="font-bold bg-yellow-300 text-black p-2 flex items-center justify-center whitespace-nowrap">
+                            Admin's Note
+                        </label>
+                        <p class="p-2 grow">
+                            {{ $nilai->admin_notes }}
+                        </p>
+                    </div>
+                @elseif ($nilai && $nilai->validated)
+                    <div class="flex justify-between w-full rounded-lg">
+                        <div class="flex w-auto overflow-hidden mb-2">
+                            <label class="font-bold text-black p-2 flex items-center justify-center whitespace-nowrap">
+                                Validated at:
+                            </label>
+                            <p class="p-2">
+                                {{ $nilai->validated_at }}
+                            </p>
+                        </div>
+                        <div class="flex w-auto border rounded-lg overflow-hidden mb-2">
+                            <label class="font-bold bg-yellow-300 text-black p-2 flex items-center justify-center whitespace-nowrap">
+                                Validated by:
+                            </label>
+                            <p class="p-2">
+                                {{ $nilai->id_admin }}
+                            </p>
+                        </div>
+                    </div>
+                @endif
+            </div>
+        @endif
+
         <h1 class="font-poppins text-lg lg:text-xl font-bold">Nilai Semester 1</h1>
+        
         {{-- Input Nilai Container --}}
         <div class="rounded-2xl p-4 bg-white w-full h-fit border-x-2 border-y-3 py-6 border-lightGray flex flex-col gap-2">
             
@@ -227,51 +263,17 @@
     
         <h1 class="font-poppins text-lg lg:text-xl font-bold">Transkrip Sementara</h1>
         <div class="h-[50dvh] w-full lg:min-h-[100dvh] border-4 border-lightGray bg-darkGray">
-        @if ($nilai && $nilai->transkrip_sementara)
-            <iframe 
-                src="{{ asset('storage/' . $nilai->transkrip_sementara) }}" 
-                class="w-full h-full" 
-                frameborder="0"
-            ></iframe>
-        @else
-            <p class="text-white text-center p-4">No PDF available</p>
-        @endif
-
-    </div>  
-    
-    @if ($nilai && ($nilai->admin_notes != null || $nilai->validated))
-        <div class="flex flex-col items-start bg-white w-full p-4 rounded-2xl h-auto border-2 border-lightGray mb-2 gap-5">
-            @if ($nilai && $nilai->admin_notes != null)
-                <div class="flex w-full border rounded-lg overflow-hidden mb-2">
-                    <label class="font-bold bg-yellow-300 text-black p-2 flex items-center justify-center whitespace-nowrap">
-                        Admin's Note
-                    </label>
-                    <p class="p-2 grow">
-                        {{ $nilai->admin_notes }}
-                    </p>
-                </div>
-            @elseif ($nilai && $nilai->validated)
-                <div class="flex justify-between w-full rounded-lg">
-                    <div class="flex w-auto overflow-hidden mb-2">
-                        <label class="font-bold text-black p-2 flex items-center justify-center whitespace-nowrap">
-                            Validated at:
-                        </label>
-                        <p class="p-2">
-                            {{ $nilai->validated_at }}
-                        </p>
-                    </div>
-                    <div class="flex w-auto border rounded-lg overflow-hidden mb-2">
-                        <label class="font-bold bg-yellow-300 text-black p-2 flex items-center justify-center whitespace-nowrap">
-                            Validated by:
-                        </label>
-                        <p class="p-2">
-                            {{ $nilai->id_admin }}
-                        </p>
-                    </div>
-                </div>
+            @if ($nilai && $nilai->transkrip_sementara)
+                <iframe 
+                    src="{{ asset('storage/' . $nilai->transkrip_sementara) }}" 
+                    class="w-full h-full" 
+                    frameborder="0"
+                ></iframe>
+            @else
+                <p class="text-white text-center p-4">No PDF available</p>
             @endif
-        </div>
-    @endif
+
+        </div>  
     </section>
     @push('scripts')
         @vite('resources/js/Alert.js')

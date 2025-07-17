@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('survey_jalurs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('nim');
+            $table->string('nim');
             $table->string('id_jalur');
             $table->timestamps();
 

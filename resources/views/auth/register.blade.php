@@ -29,7 +29,7 @@
                 {{-- NIM/NPDN Input --}}
                 <div class="w-full h-auto">
                     <label for="id_user" class="sr-only">NIM / NPDN</label>
-                    <input type="int" name="id_user" id="id_user" placeholder="NIM / NPDN" class="bg-white border-2 w-full p-3 rounded-lg border-gray-200 @error('id_user') border-red-500 @enderror" value="{{ old('id_user') }}">
+                    <input type="text" name="id_user" id="id_user" placeholder="NIM / NPDN" class="bg-white border-2 w-full p-3 rounded-lg border-gray-200 @error('id_user') border-red-500 @enderror" value="{{ old('id_user') }}">
 
                     {{-- Client side validation --}}
                     <p id="idErrorMessage" class="text-red-500 mt-1 text-xs"></p>

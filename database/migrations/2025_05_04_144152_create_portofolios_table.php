@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('portofolios', function (Blueprint $table) {
             $table->id('id_portofolio');
-            $table->unsignedBigInteger('nim');
+            $table->string('nim');
             $table->date('tanggal_mulai');
             $table->date('tanggal_berakhir');
             $table->string('nama_kegiatan');
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->enum('action', ['editable', 'locked'])->default('locked');
             $table->boolean('validated')->default(false);
             $table->timestamp('validated_at')->nullable()->default(null);
-            $table->unsignedBigInteger('id_admin')->nullable()->default(null);
+            $table->string('id_admin')->nullable()->default(null);
             $table->string('admin_notes')->nullable()->default(null);
             $table->timestamps();
 

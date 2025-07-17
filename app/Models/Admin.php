@@ -10,5 +10,5 @@ class Admin extends Model
     use HasFactory;
     protected $primaryKey = 'id_admin';
     public $incrementing = false;
-    protected $keyType = 'int';
+    protected $keyType = 'string';
 }

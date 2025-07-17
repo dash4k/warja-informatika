@@ -13,7 +13,7 @@ class Progress extends Model
 
     public $incrementing = false;
     
-    protected $keyType = 'int';
+    protected $keyType = 'string';
 
     protected $fillable = [
         'nim',

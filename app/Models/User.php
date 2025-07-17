@@ -14,7 +14,7 @@ class User extends Authenticatable
 
     protected $primaryKey = 'id_user';
     public $incrementing = false;
-    protected $keyType = 'int';
+    protected $keyType = 'string';
 
     public function getAuthIdentifierName()
     {

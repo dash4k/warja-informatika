@@ -57,4 +57,10 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     closeProfile.addEventListener('click', () => toggleContainer(false));
+
+    profileContainer.addEventListener('click', (e) => {
+        if (e.target === closeProfile || e.target === profileContainer) {
+            toggleContainer(false);
+        }
+    });
 });

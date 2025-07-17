@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('hasil_penjalurans', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('nim');
+            $table->string('nim');
             $table->string('id_jalur')->nullable()->default(null);
             $table->decimal('skor_akhir')->nullable()->default(null);
             $table->timestamps();

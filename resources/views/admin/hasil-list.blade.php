@@ -3,8 +3,7 @@
         <h1 class="font-poppins text-lg lg:text-xl font-bold">Hasil Penjaluran</h1>
 
         <div class="rounded-2xl p-4 bg-white w-full h-fit border-x-2 border-y-3 py-6 border-lightGray flex flex-col gap-5 justify-between items-center">
-            <h2 class="font-roboto text-lg lg:text-xl font-black text-white bg-midBlue p-2 px-4">Buat Penjaluran</h2>
-            <p class="font-roboto w-1/2 text-center">Belum ada data penjaluran terakhir! Silahkan buat data penjaluran baru!</p>
+            <h2 class="font-roboto text-lg lg:text-xl font-black text-white bg-midBlue p-2 px-4">Buat Data Penjaluran Baru!</h2>
             <form action="{{ route('admin.penjaluran.store') }}" method="post" class="flex items-center justify-center gap-0">
                 @csrf
                 <label for="tahun">Angkatan Penjaluran</label>
@@ -15,6 +14,34 @@
                 </button>
             </form>
         </div> 
+
+        <div class="rounded-2xl p-4 bg-white w-full border-x-2 border-y-3 py-6 border-lightGray flex flex-col gap-5 justify-between items-center">
+            <table class="table-auto w-full text-center border-collapse border border-blue-300 text-sm break-words">
+                <thead class="bg-blue-100">
+                    <tr>
+                        <th class="px-4 py-2">Tahun/Angkatan</th>
+                        <th class="px-4 py-2">Data</th>
+                    </tr>
+                </thead>
+                <tbody class="min-h-[200px]">
+                    @forelse($angkatan as $year)
+                        <tr>
+                            <td class="py-4">{{ $year }}</td>
+                            <td class="py-4">
+                                <a href="{{ route('admin.penjaluran.show', $year) }}"
+                                class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 w-fit">
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="2" class="text-gray-400 py-4">Belum ada data penjaluran.</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
     </section>
     @push('scripts')
         @vite('resources/js/Alert.js')

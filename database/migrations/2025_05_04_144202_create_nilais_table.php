@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('nilais', function (Blueprint $table) {
-            $table->id('id_nilai');
+            $table->string('id_nilai')->primary();
             $table->float('etika_profesi')->default(0);
             $table->float('kewarganegaraan')->default(0);
             $table->float('bahasa_indonesia')->default(0);
@@ -40,7 +40,7 @@ return new class extends Migration
             $table->string('transkrip_sementara')->default('');
             $table->boolean('validated')->default(false);
             $table->timestamp('validated_at')->nullable()->default(null);
-            $table->unsignedBigInteger('id_admin')->nullable()->default(null);
+            $table->string('id_admin')->nullable()->default(null);
             $table->string('admin_notes')->nullable()->default(null);
             $table->timestamps();
 

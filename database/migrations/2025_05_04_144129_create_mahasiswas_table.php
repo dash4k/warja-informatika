@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('mahasiswas', function (Blueprint $table) {
-            $table->id('nim');
+            $table->string('nim')->primary();
             $table->string('nama');
             $table->enum('kelas', ['a', 'b', 'c', 'd', 'e', 'f']);
             $table->string('profile_picture');
             $table->boolean('validated')->default(false);
             $table->timestamp('validated_at')->nullable()->default(null);
-            $table->unsignedBigInteger('id_admin')->nullable()->default(null);
+            $table->string('id_admin')->nullable()->default(null);
             $table->string('admin_notes')->nullable()->default(null);
             $table->timestamps();
             

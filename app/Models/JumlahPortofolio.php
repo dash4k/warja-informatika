@@ -8,7 +8,7 @@ class JumlahPortofolio extends Model
 {
     protected $primaryKey = 'nim';
     public $incrementing = false;
-    protected $keyType = 'int';
+    protected $keyType = 'string';
 
 
     protected $fillable = [

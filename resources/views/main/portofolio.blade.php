@@ -47,7 +47,7 @@
                                 <td class="border px-4 py-2"><i class="fa-solid fa-clock text-lg" title="Pending"></i></td>
                             @endif
                             @if ($p->admin_notes)
-                                <td class="border px-4 py-2">{{ $p->admin_notes }}</td>
+                                <td class="border px-4 py-2 bg-yellow-300 font-bold">{{ $p->admin_notes }}</td>
                             @else
                                 <td class="border px-4 py-2">-</td>
                             @endif

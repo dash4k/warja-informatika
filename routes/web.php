@@ -87,6 +87,7 @@ Route::delete('admin/ujianMahasiswa/{id}', [AdminUjianController::class, 'delete
 
 Route::resource('admin/penjaluran', AdminPenjaluranController::class)->names('admin.penjaluran')->middleware('auth')->middleware(adminAuth::class);
 Route::get('admin/show-penjaluran', [AdminPenjaluranController::class, 'showPenjaluran'])->name('admin.penjaluran.showPenjaluran')->middleware('auth')->middleware(adminAuth::class);
+Route::get('/admin/penjaluran/download/{angkatan}', [AdminPenjaluranController::class, 'downloadPdf'])->name('admin.penjaluran.download')->middleware('auth')->middleware(adminAuth::class);
 
 Route::get('/deskripsi-jalur', function () {
     return view('informasidashboard.deskripsijalur');

@@ -20,7 +20,7 @@ class RegisterController extends Controller
     {
         // Server side validation
         $request->validate([
-            'id_user' => 'required|int|unique:users',
+            'id_user' => 'required|string|unique:users',
             'email' => 'required|string|email|unique:users',
             'password' => 'required|confirmed|min:8',
             'password_confirmation' => 'required',

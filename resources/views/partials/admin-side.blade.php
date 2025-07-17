@@ -116,7 +116,7 @@
             </a>
         </div>
         
-        <button id="penjaluranButton" class="sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if(request()->routeIs('admin.soal.index') || request()->routeIs('admin.ujian.index') || request()->routeIs('admin.penjaluran.index'))
+        <button id="penjaluranButton" class="sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if(request()->routeIs('admin.soal.index') || request()->routeIs('admin.ujian.index') || request()->routeIs('admin.penjaluran.*'))
                 bg-blue-50
                 text-blue-700
                 @else
@@ -163,19 +163,19 @@
                 hover:bg-lightGray
             @endif">
                 <i class="fa-solid fa-square-poll-vertical"></i>
-                <h1 class="text-xs sideBarMenuLabel">Penjaluran</h1>
+                <h1 class="text-xs sideBarMenuLabel">Hasil</h1>
             </a>
             
             <a 
             href="{{ route('admin.penjaluran.index') }}"
-            class="sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('admin.penjaluran.index'))
+            class="sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('admin.penjaluran.index') || request()->routeIs('admin.penjaluran.show'))
                 bg-blue-50
                 text-blue-700
                 @else
                 hover:bg-lightGray
             @endif">
                 <i class="fa-brands fa-web-awesome"></i>
-                <h1 class="text-xs sideBarMenuLabel">Hasil</h1>
+                <h1 class="text-xs sideBarMenuLabel">Penjaluran</h1>
             </a>
         </div>
     </div>

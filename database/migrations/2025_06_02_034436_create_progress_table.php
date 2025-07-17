@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('progress', function (Blueprint $table) {
-            $table->id('nim');
+            $table->string('nim')->primary();
             $table->integer('progress_umum')->default(1);
             $table->integer('progress_nilai')->default(1);
             $table->foreign('nim')->references('nim')->on('mahasiswas')->onDelete('cascade');
