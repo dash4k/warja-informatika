@@ -84,4 +84,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     closeDeskripsi.addEventListener('click', () => toggleContainer(false));
+
+    deskripsiContainer.addEventListener('click', (e) => {
+        if (e.target === deskripsiContainer) {
+            toggleContainer(false);
+        }
+    });
 });

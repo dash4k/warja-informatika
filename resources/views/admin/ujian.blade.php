@@ -36,7 +36,7 @@
                                 <td class="border px-4 py-2">{{ $u->waktu_mulai->format('H:i') }}</td>
                                 @if (now() < $u->waktu_mulai)
                                     <td class="border px-4 py-2">Belum Dimulai</td>
-                                @elseif (now() >= $u->waktu_mulai && now() <= $u->waktu_mulai->addMinutes($u->durasi_ujian))
+                                @elseif (now() >= $u->waktu_mulai && now() <= $u->waktu_mulai->addMinutes((int) ($u->durasi_ujian ?? 0)))
                                     <td class="border px-4 py-2">Berlangsung</td>
                                 @else
                                     <td class="border px-4 py-2">Selesai</td>

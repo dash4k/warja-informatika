@@ -85,8 +85,8 @@
 
                 {{-- Button --}}
                 <div class="w-full lg:w-1/4 flex flex-col gap-2 pt-4 lg:justify-center lg:items-center lg:pt-0">
-                    <button class="w-full bg-blue-100" type="submit">Save Changes</button>
-                    <button class="w-full bg-red-100">Revert Changes</button>
+                    <button class="w-full font-bold hover:font-normal bg-lightBlue text-paperWhite hover:cursor-pointer hover:bg-blue-100 hover:text-black transition-all duration-100 " type="submit">Save Changes</button>
+                    <button class="w-full font-bold hover:font-normal bg-red-400 text-paperWhite hover:cursor-pointer hover:bg-red-100 hover:text-black transition-all duration-100">Revert Changes</button>
                 </div>
 
             </div> 

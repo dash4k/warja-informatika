@@ -41,4 +41,11 @@ document.getElementById('closePortofolio').addEventListener('click', () => {
     modal.classList.add('opacity-0', 'pointer-events-none');
 });
 
+document.getElementById('portofolioContainer').addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) {
+        const modal = document.getElementById('portofolioContainer');
+        modal.classList.add('opacity-0', 'pointer-events-none');
+    }
+});
+
 console.log(window.portofolios);

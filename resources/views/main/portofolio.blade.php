@@ -130,8 +130,8 @@
                         <p id="buktiErrorMessage" class="text-red-500 mt-1 text-xs"></p>
                     </div>
                     <div class="flex gap-2 justify-end">
-                        <button id="cancelButton" type="button" onclick="hideForm()" class="px-4 py-2 bg-gray-300 hover:bg-gray-200 rounded">Cancel</button>
-                        <button id="submitButton" type="submit" class="px-4 py-2 bg-green-600 hover:bg-green-300 text-white rounded">Submit</button>
+                        <button id="cancelButton" type="button" onclick="hideForm()" class="px-4 py-2 hover:cursor-pointer bg-gray-300 hover:bg-gray-200 rounded">Cancel</button>
+                        <button id="submitButton" type="submit" class="px-4 py-2 hover:cursor-pointer bg-green-600 hover:bg-green-300 text-white rounded">Submit</button>
                     </div>
                 </form>
             </div>

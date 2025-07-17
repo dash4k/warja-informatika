@@ -21,7 +21,7 @@
                         @foreach($jalurList as $jalur)
                             <tr class="soalRow"
                                 data-jalur="{{ $jalur }}"
-                                data-soals='@json($surveysPerJalur[$jalur] ?? [])'
+                                data-survey='@json($surveysPerJalur[$jalur] ?? [])'
                             >
                                 <td class="border px-4 py-2 bg-blue-100 text-left">{{ $jalur }}</td>
                                 <td class="border px-4 py-2">{{ $jumlahPerJalur[$jalur] ?? 0 }}</td>
@@ -77,6 +77,11 @@
                                 @endforeach
                             </tbody>
                         </table>
+                    </div>
+                @else
+                    <div class="mb-6">
+                        <h3 class="font-reguler text-black mb-2">Jalur {{ $jalur }}</h3>
+                        <p class="w-full text-center border-collapse border text-sm">Belum ada data untuk jalur ini.</p>
                     </div>
                 @endif
             @endforeach

@@ -78,4 +78,10 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleForm(true);
         });
     });
+
+    formContainer.addEventListener('click', (e) => {
+        if (e.target === formContainer) {
+            toggleForm(false);
+        }
+    })
 });

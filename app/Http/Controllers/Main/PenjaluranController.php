@@ -59,7 +59,8 @@ class PenjaluranController extends Controller
 
         $ujian = $ujianMahasiswa->ujian;
         $startDateTime = Carbon::parse($ujianMahasiswa->waktu_mulai);
-        $endDateTime = $startDateTime->copy()->addMinutes($ujian->durasi_ujian);
+        $durasi = (int) ($ujianMahasiswa->ujian->durasi_ujian ?? 0);
+        $endDateTime = $startDateTime->copy()->addMinutes($durasi);
 
         return view('penjaluran.exam', compact('soals', 'endDateTime'));
     }
@@ -97,28 +98,30 @@ class PenjaluranController extends Controller
 
         $ujianPenjaluran = $mahasiswa->ujianMahasiswa->ujian;
 
-        // Combine tanggal & waktu
         $tanggal = Carbon::parse($ujianPenjaluran->tanggal_mulai)->format('Y-m-d');
         $waktu = Carbon::parse($ujianPenjaluran->waktu_mulai)->format('H:i:s');
         $startDateTime = Carbon::parse("$tanggal $waktu");
 
-        // Add durasi to get end time
-        $endDateTime = $startDateTime->copy()->addMinutes($ujianPenjaluran->durasi_ujian);
+        $durasi = intval($ujianPenjaluran->durasi_ujian);
+        $endDateTime = $startDateTime->copy()->addMinutes($durasi);
 
-        // Current time
-        $now = now(); // Assuming timezone already set in config/app.php
+        $now = now(); 
 
         if (!$mahasiswa->hasilPenjaluran) {
-            if ($now->between($startDateTime, $endDateTime)) {
-                return redirect()->route('penjaluran.start');
-            } elseif ($now->lt($startDateTime)) {
-                return redirect()->route('penjaluran.countdown');
-            } else {
+            if ($mahasiswa->ujianMahasiswa->waktu_selesai === null) {
+                if ($now->between($startDateTime, $endDateTime)) {
+                    return redirect()->route('penjaluran.start');
+                } else {
+                    return redirect()->route('penjaluran.countdown');
+                } 
+            }
+            else {
                 return redirect()->route('penjaluran.waiting');
             }
+        } else {
+            return redirect()->route('penjaluran');
         }
 
-        return redirect()->route('penjaluran');
     }
 
     public function startExam()
@@ -171,9 +174,10 @@ class PenjaluranController extends Controller
         }
 
         if ($action === 'submit') {
-            HasilPenjaluran::create([
-                'nim' => Auth::user()->id_user,
-            ]);
+            $ujian = Auth::user()->mahasiswa->ujianMahasiswa;
+
+            $ujian->waktu_selesai = now();
+            $ujian->save();
             
             return redirect()->route('penjaluran.waiting')->with('success', 'Exam submitted successfully.');
         }

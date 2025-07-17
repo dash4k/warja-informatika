@@ -21,14 +21,15 @@
                         
                         @php
                             $savedAnswer = $soalUjian->jawaban->jawaban ?? null;
+                            $options = $soalUjian->soal->pilihan;
                         @endphp
 
                         @foreach (['A', 'B', 'C', 'D'] as $option)
                             <div class="mt-1">
                                 <label class="hover:cursor-pointer">
                                     <input type="radio" name="answers[{{ $soalUjian->id }}]" value="{{ $option }}"
-                                        {{ $savedAnswer === $option ? 'checked' : '' }} class="hover:cursor-pointer"> {{ strtolower($option) }}.
-                                    {{ $soalUjian->soal->pertanyaan }}
+                                        {{ $savedAnswer === $option ? 'checked' : '' }} class="hover:cursor-pointer"> 
+                                    {{ strtolower($option) }}. {{ $options[$option] ?? '-' }}
                                 </label>
                             </div>
                         @endforeach

@@ -141,4 +141,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     closeNilai.addEventListener('click', () => toggleContainer(false));
+
+    nilaiContainer.addEventListener('click', (e) => {
+        if (e.target === nilaiContainer) {
+            toggleContainer(false);
+        }
+    })
 });
