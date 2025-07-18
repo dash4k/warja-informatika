@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('hasil_penjalurans', function (Blueprint $table) {
             $table->id();
-            $table->string('nim');
+            $table->string('nim')->nullable()->default(null);
             $table->string('id_jalur')->nullable()->default(null);
             $table->decimal('skor_akhir')->nullable()->default(null);
             $table->timestamps();

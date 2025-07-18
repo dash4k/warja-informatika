@@ -271,7 +271,7 @@ class AdminPenjaluranController extends Controller
                 if (!in_array($candidate['nim'], $assignedNIMs)) {
                     $assignedNIMs[] = $candidate['nim'];
                     $finalAssignments[] = [
-                        'nim' => $candidate['nim'],
+                        'nim' => (string) $candidate['nim'],
                         'id_jalur' => strtoupper($jalur),
                         'skor_akhir' => $candidate['score'],
                         'created_at' => now(),

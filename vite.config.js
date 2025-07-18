@@ -34,6 +34,7 @@ export default defineConfig({
                 'resources/js/Alert.js',
                 'resources/js/navbar.js',
                 'resources/js/penjaluranExam.js',
+                'resources/js/ujianCountdown.js',
             ],
             refresh: true,
         }),

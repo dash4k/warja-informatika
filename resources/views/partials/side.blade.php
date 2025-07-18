@@ -52,10 +52,10 @@
             @if (auth()->user()->mahasiswa?->progress?->progress_umum < 1)
                 href=""
             @else
-                @if (auth()->user()->mahasiswa?->progress?->progress_nilai === 5)
-                    href="{{ route('nilai.index') }}"    
-                @else
+                @if (auth()->user()->mahasiswa?->progress?->progress_nilai < 5)
                     href="{{ route('nilai', auth()->user()->mahasiswa?->progress?->progress_nilai ?? 1) }}"    
+                @else
+                    href="{{ route('nilai.index') }}"    
                 @endif
             @endif
             class="@if (auth()->user()->mahasiswa?->progress?->progress_umum < 1) pointer-events-none text-gray-400 @endif sideBarMenuAnchor p-5 w-4/5 h-5 text-sm flex gap-3 items-center rounded-xl @if (request()->routeIs('nilai') || request()->routeIs('nilai.index') || request()->routeIs('transkrip'))
